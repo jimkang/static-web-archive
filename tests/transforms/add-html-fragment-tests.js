@@ -12,7 +12,7 @@ var cells = [
       bitrate: 832000,
       content_type: 'video/mp4',
       url:
-        'http://jimkang.com/static-web-archive-on-git/tests/fixtures/videos/pbDLD37qZWDBGBHW.mp4'
+        'http://jimkang.com/static-web-archive/tests/fixtures/videos/pbDLD37qZWDBGBHW.mp4'
     },
     postedToGit: true,
     mediaFilename: 'pbDLD37qZWDBGBHW.mp4'
@@ -25,7 +25,7 @@ var cells = [
       bitrate: 832000,
       content_type: 'video/mp4',
       url:
-        'http://jimkang.com/static-web-archive-on-git/tests/fixtures/videos/DPL17ys0-inDTwQW.mp4'
+        'http://jimkang.com/static-web-archive/tests/fixtures/videos/DPL17ys0-inDTwQW.mp4'
     },
     postedToGit: true,
     mediaFilename: 'DPL17ys0-inDTwQW.mp4'

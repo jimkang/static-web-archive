@@ -61,7 +61,7 @@ function UpdateIndexHTMLInGit(opts) {
           {
             filePath: filePath,
             content: htmlPackage.content,
-            message: 'static-web-archive-on-git posting updating index HTML'
+            message: 'static-web-archive posting updating index HTML'
           },
           done
         );

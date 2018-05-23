@@ -10,7 +10,7 @@ function establishLastPageIndex(githubFile, indexFileLocation, establishDone) {
         {
           filePath: indexFileLocation,
           content: '0',
-          message: 'static-web-archive-on-git posting last page index'
+          message: 'static-web-archive posting last page index'
         },
         sb(passZero, establishDone)
       );

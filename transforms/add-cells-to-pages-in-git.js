@@ -54,10 +54,10 @@ function AddCellsToPagesInGit(opts) {
     function getLastPage(done) {
       githubFileForText.get(
         metaDir + '/' + lastPageIndex + '.json',
-        decideOnGitResult
+        decideResult
       );
 
-      function decideOnGitResult(error, gitPackage) {
+      function decideResult(error, gitPackage) {
         if (error) {
           done(error);
         } else if (gitPackage.content) {
@@ -93,7 +93,7 @@ function AddCellsToPagesInGit(opts) {
         {
           filePath: filePath,
           content: JSON.stringify(page.cells),
-          message: 'static-web-archive-on-git posting page cell metadata'
+          message: 'static-web-archive posting page cell metadata'
         },
         passAfterDelay
       );

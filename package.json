@@ -1,5 +1,5 @@
 {
-  "name": "static-web-archive-on-git",
+  "name": "static-web-archive",
   "version": "2.0.1",
   "description": "A module that maintains a static web archive that you can add to piece by piece. For image bots in particular.",
   "main": "create-posting-stream-chain.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:jimkang/static-web-archive-on-git.git"
+    "url": "git@github.com:jimkang/static-web-archive.git"
   },
   "keywords": [],
   "author": "Jim Kang",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jimkang/static-web-archive-on-git/issues"
+    "url": "https://github.com/jimkang/static-web-archive/issues"
   },
-  "homepage": "https://github.com/jimkang/static-web-archive-on-git",
+  "homepage": "https://github.com/jimkang/static-web-archive",
   "devDependencies": {
     "assert-no-error": "^1.0.0",
     "longjohn": "^0.2.12",

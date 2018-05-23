@@ -42,13 +42,13 @@ function BufferToGit(opts) {
       var bufferGitPayload = {
         filePath: mediaDir + '/' + newCell.mediaFilename,
         content: cell.buffer,
-        message: 'static-web-archive-on-git posting media'
+        message: 'static-web-archive posting media'
       };
 
       var metadataGitPayload = {
         filePath: metaDir + '/' + newCell.id + '.json',
         content: JSON.stringify(newCell),
-        message: 'static-web-archive-on-git posting media metadata'
+        message: 'static-web-archive posting media metadata'
       };
 
       // It's really important to make these updates serially so that one doesn't commit

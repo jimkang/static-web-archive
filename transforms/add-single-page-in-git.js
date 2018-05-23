@@ -37,7 +37,7 @@ function AddSinglePageInGit(opts) {
       {
         filePath: filePath,
         content: html,
-        message: 'static-web-archive-on-git posting single entry HTML'
+        message: 'static-web-archive posting single entry HTML'
       },
       sb(passResultsAfterDelay, addCellsDone)
     );
