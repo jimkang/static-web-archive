@@ -4,3 +4,4 @@ config.js
 config.mk
 data/*
 tests/output/*
+tests/file-abstractions/test-root/*

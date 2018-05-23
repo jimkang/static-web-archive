@@ -13,23 +13,20 @@ Installation
 Usage
 -----
 
-The idea here is that you have a GitHub repo that is the source for a lightweight static weblog, and you have a program that you want to update it programmatically.
+The idea here is that you have a root directory containing your lightweight static weblog, and you have a program that you want to update it programmatically.
 
 So, in your program, you create an instance of this module like so:
 
-    var StaticWebArchive = require('-static-web-archive');
+    var StaticWebArchive = require('static-web-archive');
     var staticWebStream = StaticWebArchive({
       title: 'Vape bot archives',
       footerHTML: `<div>Bottom of page</div>`,
       config: {
-        gitRepoOwner: 'your GitHub username',
-        gitToken: 'Your personal access token from https://github.com/settings/tokens (the token needs repo access)',
-        repo: 'the name of the repo that contains the archive'
-      },
-      maxEntriesPerPage: 25
-    })
+        rootDir: '/usr/share/nginx/html/weblog',
+        maxEntriesPerPage: 25
+      })
 
-Then, when the program has a new post, get it into the archive on git like so:
+Then, when the program has a new post, get it into the archive like so:
 
     staticWebStream.write({
       id: 'my-unique-post-id-a',
@@ -60,7 +57,7 @@ Then, when you're all done, you close the stream like so:
       }
     }
 
-After the above runs, in the git repo, there will be:
+After the above runs, in the rootDir, there will be:
 
 - An `index.html` that contains the latest n posts. If there are more than n total entries, there will be a `1.html`, a `2.html`, and so forth containing previous entries. The footer of each will link to previous pages.
 - HTML files in the root directory for each individual post.

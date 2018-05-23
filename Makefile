@@ -1,4 +1,5 @@
 test: git-tests
+	node tests/file-abstractions/fs-abstraction-tests.js
 	node tests/add-cells-to-pages-tests.js
 	node tests/make-index-html-from-page-spec-tests.js
 	node tests/integration/post-through-chain-test.js

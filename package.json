@@ -28,6 +28,7 @@
     "call-next-tick": "^2.0.1",
     "d3-array": "^1.1.1",
     "d3-queue": "^3.0.5",
+    "fs-extra": "^6.0.1",
     "github-file": "^1.1.2",
     "idmaker": "^0.1.1",
     "lodash.clonedeep": "^4.5.0",
@@ -37,7 +38,6 @@
     "lodash.pluck": "^3.1.2",
     "ndjson": "^1.5.0",
     "probable": "^2.1.1",
-    "request": "^2.81.0",
     "standard-bail": "^2.0.1",
     "through2": "^2.0.3"
   }
