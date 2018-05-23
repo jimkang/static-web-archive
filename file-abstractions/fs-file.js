@@ -9,7 +9,16 @@ function FSFile({ rootPath, encoding = 'utf8' }) {
   };
 
   function get(filePath, done) {
-    fs.readFile(path.join(rootPath, filePath), { encoding }, sb(wrapContent, done));
+    var fullPath = path.join(rootPath, filePath);
+    fs.pathExists(fullPath, sb(decide, done));
+
+    function decide(exists) {
+      if (exists) {
+        fs.readFile(path.join(rootPath, filePath), { encoding }, sb(wrapContent, done));
+      } else {
+        wrapContent();
+      }
+    }
 
     function wrapContent(content) {
       done(null, { content });

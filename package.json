@@ -20,6 +20,7 @@
   "devDependencies": {
     "assert-no-error": "^1.0.0",
     "longjohn": "^0.2.12",
+    "request": "^2.87.0",
     "tape": "^4.6.0",
     "through-stream-testbed": "^1.0.0"
   },

@@ -1,9 +1,7 @@
-/* global Buffer */
-
+/* global __dirname */
 var test = require('tape');
 var assertNoError = require('assert-no-error');
 var FSFile = require('../../file-abstractions/fs-file');
-var cloneDeep = require('lodash.clonedeep');
 var randomId = require('idmaker').randomId;
 
 var defaultCtorOpts = {

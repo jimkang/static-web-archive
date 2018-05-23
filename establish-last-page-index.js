@@ -3,8 +3,8 @@ var sb = require('standard-bail')();
 function establishLastPageIndex(fileAbstraction, indexFileLocation, establishDone) {
   fileAbstraction.get(indexFileLocation, sb(inspectResponse, establishDone));
 
-  function inspectResponse(gitResult) {
-    if (gitResult.length < 1) {
+  function inspectResponse(result) {
+    if (!result.content || result.length < 1) {
       // It doesn't exist, so create it.
       fileAbstraction.update(
         {
@@ -15,7 +15,7 @@ function establishLastPageIndex(fileAbstraction, indexFileLocation, establishDon
         sb(passZero, establishDone)
       );
     } else {
-      establishDone(null, parseInt(gitResult.content, 10));
+      establishDone(null, parseInt(result.content, 10));
     }
   }
 
