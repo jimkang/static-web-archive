@@ -1,12 +1,12 @@
 var sb = require('standard-bail')();
 
-function establishLastPageIndex(githubFile, indexFileLocation, establishDone) {
-  githubFile.get(indexFileLocation, sb(inspectResponse, establishDone));
+function establishLastPageIndex(fileAbstraction, indexFileLocation, establishDone) {
+  fileAbstraction.get(indexFileLocation, sb(inspectResponse, establishDone));
 
   function inspectResponse(gitResult) {
     if (gitResult.length < 1) {
       // It doesn't exist, so create it.
-      githubFile.update(
+      fileAbstraction.update(
         {
           filePath: indexFileLocation,
           content: '0',

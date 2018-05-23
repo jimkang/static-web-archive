@@ -10,7 +10,7 @@ function AddSinglePageInGit(opts) {
   const title = opts.title;
   const footerHTML = opts.footerHTML;
 
-  var githubFileForText = GitHubFile(
+  var fileAbstractionForText = GitHubFile(
     defaults(cloneDeep(opts), {
       encodeInBase64: encoders.encodeTextInBase64,
       decodeFromBase64: encoders.decodeFromBase64ToText
@@ -33,7 +33,7 @@ function AddSinglePageInGit(opts) {
     }
     filePath += cellToAdd.id + '.html';
 
-    githubFileForText.update(
+    fileAbstractionForText.update(
       {
         filePath: filePath,
         content: html,

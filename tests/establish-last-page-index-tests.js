@@ -8,7 +8,7 @@ var encoders = require('../base-64-encoders');
 
 var assertNoError = require('assert-no-error');
 
-var githubFile = GitHubFile({
+var fileAbstraction = GitHubFile({
   branch: 'master',
   gitRepoOwner: config.githubTest.gitRepoOwner,
   gitToken: config.githubTest.gitToken,
@@ -27,7 +27,7 @@ test('Get index when no index file exists yet', noIndexYetTest);
 test('Get index when index file exists', indexExistsTest);
 
 function noIndexYetTest(t) {
-  establishLastPageIndex(githubFile, indexFileLocation, checkResult);
+  establishLastPageIndex(fileAbstraction, indexFileLocation, checkResult);
 
   function checkResult(error, index) {
     assertNoError(t.ok, error, 'No error while establishing index.');
@@ -37,14 +37,14 @@ function noIndexYetTest(t) {
 }
 
 function indexExistsTest(t) {
-  githubFile.update(
+  fileAbstraction.update(
     { filePath: indexFileLocation, content: '4' },
     runEstablish
   );
 
   function runEstablish(error) {
     assertNoError(t.ok, error, 'No error while updating file.');
-    establishLastPageIndex(githubFile, indexFileLocation, checkResult);
+    establishLastPageIndex(fileAbstraction, indexFileLocation, checkResult);
   }
 
   function checkResult(error, index) {

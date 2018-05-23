@@ -14,7 +14,7 @@ function UpdateIndexHTMLInGit(opts) {
   const title = opts.title;
   const footerHTML = opts.footerHTML;
 
-  var githubFileForText = GitHubFile(
+  var fileAbstractionForText = GitHubFile(
     defaults(cloneDeep(opts), {
       encodeInBase64: encoders.encodeTextInBase64,
       decodeFromBase64: encoders.decodeFromBase64ToText
@@ -57,7 +57,7 @@ function UpdateIndexHTMLInGit(opts) {
         }
         filePath += htmlPackage.filename;
 
-        githubFileForText.update(
+        fileAbstractionForText.update(
           {
             filePath: filePath,
             content: htmlPackage.content,

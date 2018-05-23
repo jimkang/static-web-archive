@@ -11,13 +11,13 @@ function BufferToGit(opts) {
   var mediaDir = opts.mediaDir;
   var metaDir = opts.metaDir;
 
-  var githubFileForBuffers = GitHubFile(
+  var fileAbstractionForBuffers = GitHubFile(
     defaults(cloneDeep(opts), {
       encodeInBase64: encoders.encodeInBase64,
       decodeFromBase64: encoders.decodeFromBase64
     })
   );
-  var githubFileForText = GitHubFile(
+  var fileAbstractionForText = GitHubFile(
     defaults(cloneDeep(opts), {
       encodeInBase64: encoders.encodeTextInBase64,
       decodeFromBase64: encoders.decodeFromBase64ToText
@@ -54,9 +54,9 @@ function BufferToGit(opts) {
       // It's really important to make these updates serially so that one doesn't commit
       // between the other's sha-get and commit, thereby changing the branch tip.
       var q = queue(1);
-      q.defer(githubFileForBuffers.update, bufferGitPayload);
+      q.defer(fileAbstractionForBuffers.update, bufferGitPayload);
       q.defer(wait);
-      q.defer(githubFileForText.update, metadataGitPayload);
+      q.defer(fileAbstractionForText.update, metadataGitPayload);
       q.awaitAll(sb(passPackage, done));
     } else {
       callNextTick(passPackage);

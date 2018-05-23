@@ -16,7 +16,7 @@ function AddCellsToPagesInGit(opts) {
   const metaDir = opts.metaDir;
   const lastPagePath = metaDir + '/last-page.txt';
 
-  var githubFileForText = GitHubFile(
+  var fileAbstractionForText = GitHubFile(
     defaults(cloneDeep(opts), {
       encodeInBase64: encoders.encodeTextInBase64,
       decodeFromBase64: encoders.decodeFromBase64ToText
@@ -32,7 +32,7 @@ function AddCellsToPagesInGit(opts) {
     // TODO: Think about rewriting as stream-like chain.
     waterfall(
       [
-        curry(establishLastPageIndex)(githubFileForText, lastPagePath),
+        curry(establishLastPageIndex)(fileAbstractionForText, lastPagePath),
         saveLastPageIndex,
         getLastPage,
         addCells,
@@ -52,7 +52,7 @@ function AddCellsToPagesInGit(opts) {
     }
 
     function getLastPage(done) {
-      githubFileForText.get(
+      fileAbstractionForText.get(
         metaDir + '/' + lastPageIndex + '.json',
         decideResult
       );
@@ -89,7 +89,7 @@ function AddCellsToPagesInGit(opts) {
     function updatePageInGit(page, done) {
       var filePath = metaDir + '/' + page.index + '.json';
 
-      githubFileForText.update(
+      fileAbstractionForText.update(
         {
           filePath: filePath,
           content: JSON.stringify(page.cells),
@@ -108,7 +108,7 @@ function AddCellsToPagesInGit(opts) {
     }
 
     function updateLastPageIndex(pagesGitPackages, done) {
-      githubFileForText.update(
+      fileAbstractionForText.update(
         {
           filePath: lastPagePath,
           content: '' + updatedPagesPackage.newLastPageIndex
