@@ -1,30 +1,15 @@
-var GitHubFile = require('github-file');
 var sb = require('standard-bail')();
 var omit = require('lodash.omit');
 var queue = require('d3-queue').queue;
-var cloneDeep = require('lodash.clonedeep');
-var defaults = require('lodash.defaults');
-var encoders = require('../base-64-encoders');
 var callNextTick = require('call-next-tick');
 
-function BufferToGit(opts) {
-  var mediaDir = opts.mediaDir;
-  var metaDir = opts.metaDir;
-
-  var fileAbstractionForBuffers = GitHubFile(
-    defaults(cloneDeep(opts), {
-      encodeInBase64: encoders.encodeInBase64,
-      decodeFromBase64: encoders.decodeFromBase64
-    })
-  );
-  var fileAbstractionForText = GitHubFile(
-    defaults(cloneDeep(opts), {
-      encodeInBase64: encoders.encodeTextInBase64,
-      decodeFromBase64: encoders.decodeFromBase64ToText
-    })
-  );
-
-  return bufferToGit;
+function BufferToPersistence({
+  mediaDir,
+  metaDir,
+  fileAbstractionForText,
+  fileAbstractionForBuffers
+}) {
+  return bufferToPersistence;
 
   // Expected in a cell:
   // buffer
@@ -33,7 +18,7 @@ function BufferToGit(opts) {
   // date
   // optional: caption
   // optional: isVideo
-  function bufferToGit(cell, enc, done) {
+  function bufferToPersistence(cell, enc, done) {
     var stream = this;
 
     var newCell = omit(cell, 'buffer');
@@ -63,7 +48,7 @@ function BufferToGit(opts) {
     }
 
     function passPackage() {
-      newCell.postedToGit = true;
+      newCell.postedToPersistence = true;
       stream.push(newCell);
       done();
     }
@@ -74,4 +59,4 @@ function wait(done) {
   setTimeout(done, 2000);
 }
 
-module.exports = BufferToGit;
+module.exports = BufferToPersistence;

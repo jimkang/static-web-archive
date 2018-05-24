@@ -15,13 +15,14 @@ var testCases = [
     content: 'Hello, here is some content: ' + randomId(20)
   },
   {
-    filePath: 'directory-b/subdirectory-' + randomId(5) + '/' + randomId(14) + '.txt',
+    filePath:
+      'directory-b/subdirectory-' + randomId(5) + '/' + randomId(14) + '.txt',
     content: 'Hello, here is some content: ' + randomId(20)
   },
   {
     filePath: 'directory-a/' + randomId(14) + '.txt',
     content: 'Hello, here is some content: ' + randomId(20)
-  },
+  }
 ];
 
 testCases.forEach(runUpdateTest);
@@ -37,7 +38,9 @@ function runGetTest(testCase) {
     function checkRetrievedFile(error, result) {
       assertNoError(t.ok, error, 'No error from getFile.');
       t.equal(result.content, testCase.content, 'Content is correct.');
-      console.log('Please head over to tests/file-abstractions/test-root and manually inspect the files created by these tests.');
+      console.log(
+        'Please head over to tests/file-abstractions/test-root and manually inspect the files created by these tests.'
+      );
       t.end();
     }
   }
@@ -50,10 +53,9 @@ function runUpdateTest(testCase) {
     var updateFile = FSFile(defaultCtorOpts).update;
     updateFile(testCase, checkResult);
 
-    function checkResult(error, commit) {
+    function checkResult(error) {
       assertNoError(t.ok, error, 'No error from updateFile.');
       t.end();
     }
   }
 }
-

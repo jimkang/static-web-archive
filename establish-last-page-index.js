@@ -1,6 +1,10 @@
 var sb = require('standard-bail')();
 
-function establishLastPageIndex(fileAbstraction, indexFileLocation, establishDone) {
+function establishLastPageIndex(
+  fileAbstraction,
+  indexFileLocation,
+  establishDone
+) {
   fileAbstraction.get(indexFileLocation, sb(inspectResponse, establishDone));
 
   function inspectResponse(result) {

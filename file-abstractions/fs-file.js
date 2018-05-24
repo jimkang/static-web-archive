@@ -14,7 +14,11 @@ function FSFile({ rootPath, encoding = 'utf8' }) {
 
     function decide(exists) {
       if (exists) {
-        fs.readFile(path.join(rootPath, filePath), { encoding }, sb(wrapContent, done));
+        fs.readFile(
+          path.join(rootPath, filePath),
+          { encoding },
+          sb(wrapContent, done)
+        );
       } else {
         wrapContent();
       }
@@ -29,7 +33,7 @@ function FSFile({ rootPath, encoding = 'utf8' }) {
     var fullPath = path.join(rootPath, filePath);
     fs.ensureFile(fullPath, sb(write, done));
     function write() {
-      fs.writeFile(fullPath, content, done); 
+      fs.writeFile(fullPath, content, done);
     }
   }
 }
