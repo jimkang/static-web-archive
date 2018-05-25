@@ -1,8 +1,8 @@
+/* global process */
 var test = require('tape');
 var StreamTestBed = require('through-stream-testbed');
-var UpdateIndexHTMLInGit = require('../../transforms/update-index-html-in-git');
-var config = require('../../config');
-var request = require('request');
+var UpdateIndexHTMLPersistent = require('../../transforms/update-index-html-persistent');
+var getFileAbstractforEnv = require('../fixtures/get-file-abstraction-for-env');
 
 var cells = [
   {
@@ -63,27 +63,25 @@ var cells = [
   }
 ];
 
-var updateIndexHTMLInGit = UpdateIndexHTMLInGit({
-  branch: 'master',
-  gitRepoOwner: config.githubTest.gitRepoOwner,
-  gitToken: config.githubTest.gitToken,
-  repo: config.githubTest.repo,
-  request: request,
-  shouldSetUserAgent: true,
-  htmlDir: 'video'
+var updateIndexHTMLPersistent = UpdateIndexHTMLPersistent({
+  htmlDir: 'video',
+  title: 'update-index-html test page',
+  footerHTML: '<footer>the bottom</footer>',
+  fileAbstraction: getFileAbstractforEnv(),
+  skipDelays: process.env.ABSTRACTION !== 'GitHubFile'
 });
 
 test(
   'Test creating index pages for cells to index in git',
   StreamTestBed({
-    transformFn: updateIndexHTMLInGit,
+    transformFn: updateIndexHTMLPersistent,
     inputItems: cells,
-    checkCollectedStreamOutput: checkGitResults,
-    checkOutputItem: checkGitResult
+    checkCollectedStreamOutput: checkResults,
+    checkOutputItem: checkResult
   })
 );
 
-function checkGitResults(t, resultCells) {
+function checkResults(t, resultCells) {
   t.equal(
     resultCells.length,
     cells.length,
@@ -92,7 +90,8 @@ function checkGitResults(t, resultCells) {
   console.log('Look at the repo to verify the correct updates were committed.');
 }
 
-function checkGitResult(t, resultCell) {
+function checkResult(t, resultCell) {
   t.ok(resultCell.indexesHTML.length > 0, 'There is at least one index html.');
   console.log(resultCell.indexesHTML);
 }
+

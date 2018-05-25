@@ -1,29 +1,16 @@
-var encoders = require('../base-64-encoders');
-var defaults = require('lodash.defaults');
-var cloneDeep = require('lodash.clonedeep');
 var callNextTick = require('call-next-tick');
-var GitHubFile = require('github-file');
 var waterfall = require('async-waterfall');
 var queue = require('d3-queue').queue;
 var makeIndexHTMLFromPageSpec = require('../make-index-html-from-page-spec');
 var sb = require('standard-bail')();
 var template = require('../page-template');
 
-function UpdateIndexHTMLInGit(opts) {
-  const htmlDir = opts.htmlDir;
-  const title = opts.title;
-  const footerHTML = opts.footerHTML;
+function UpdateIndexHTMLPersistent({
+  htmlDir, title, footerHTML, fileAbstraction
+}) {
+  return updateIndexHTMLPersistent;
 
-  var fileAbstractionForText = GitHubFile(
-    defaults(cloneDeep(opts), {
-      encodeInBase64: encoders.encodeTextInBase64,
-      decodeFromBase64: encoders.decodeFromBase64ToText
-    })
-  );
-
-  return updateIndexHTMLInGit;
-
-  function updateIndexHTMLInGit(cell, enc, updateDone) {
+  function updateIndexHTMLPersistent(cell, enc, updateDone) {
     var stream = this;
     var htmlPackages = cell.updatedPages.map(makeIndexHTMLFromPage);
 
@@ -48,16 +35,16 @@ function UpdateIndexHTMLInGit(opts) {
     }
 
     function updateGitWithPackage(htmlPackage, done) {
-      waterfall([updateFileInGit, addIndexHTMLToCell], done);
+      waterfall([updateFilePersistent, addIndexHTMLToCell], done);
 
-      function updateFileInGit(done) {
+      function updateFilePersistent(done) {
         var filePath = '';
         if (htmlDir) {
           filePath = htmlDir + '/';
         }
         filePath += htmlPackage.filename;
 
-        fileAbstractionForText.update(
+        fileAbstraction.update(
           {
             filePath: filePath,
             content: htmlPackage.content,
@@ -95,4 +82,4 @@ function getPreviousIndexHTML(page) {
   return previousIndexHTML;
 }
 
-module.exports = UpdateIndexHTMLInGit;
+module.exports = UpdateIndexHTMLPersistent;
