@@ -33,7 +33,10 @@ function FSFile({ rootPath, encoding = 'utf8' }) {
     var fullPath = path.join(rootPath, filePath);
     fs.ensureFile(fullPath, sb(write, done));
     function write() {
-      fs.writeFile(fullPath, content, done);
+      fs.writeFile(fullPath, content, matchGithubFileUpdateCallback);
+    }
+    function matchGithubFileUpdateCallback(error) {
+      done(error, {});
     }
   }
 }

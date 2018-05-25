@@ -1,43 +1,36 @@
-var encoders = require('../base-64-encoders');
-var defaults = require('lodash.defaults');
-var cloneDeep = require('lodash.clonedeep');
 var callNextTick = require('call-next-tick');
 var establishLastPageIndex = require('../establish-last-page-index');
-var GitHubFile = require('github-file');
 var waterfall = require('async-waterfall');
 var curry = require('lodash.curry');
 var queue = require('d3-queue').queue;
 var AddCellsToPages = require('../add-cells-to-pages');
 
-function AddCellsToPagesInGit(opts) {
+function AddCellsToPagesPersistent({
+  metaDir,
+  fileAbstraction,
+  maxEntriesPerPage,
+  skipDelays = false
+}) {
   var addCellsToPages = AddCellsToPages({
-    maxEntriesPerPage: opts.maxEntriesPerPage
+    maxEntriesPerPage
   });
-  const metaDir = opts.metaDir;
   const lastPagePath = metaDir + '/last-page.txt';
 
-  var fileAbstractionForText = GitHubFile(
-    defaults(cloneDeep(opts), {
-      encodeInBase64: encoders.encodeTextInBase64,
-      decodeFromBase64: encoders.decodeFromBase64ToText
-    })
-  );
+  return addCellsToPagesPersistent;
 
-  return addCellsToPagesInGit;
-
-  function addCellsToPagesInGit(cellToAdd, enc, addCellsDone) {
+  function addCellsToPagesPersistent(cellToAdd, enc, addCellsDone) {
     var lastPageIndex;
     var updatedPagesPackage;
 
     // TODO: Think about rewriting as stream-like chain.
     waterfall(
       [
-        curry(establishLastPageIndex)(fileAbstractionForText, lastPagePath),
+        curry(establishLastPageIndex)(fileAbstraction, lastPagePath),
         saveLastPageIndex,
         getLastPage,
         addCells,
         prePageUpdateDelay,
-        updatePagesInGit,
+        updatePagesPersistent,
         postPageUpdateDelay,
         updateLastPageIndex,
         postIndexUpdateDelay,
@@ -52,16 +45,16 @@ function AddCellsToPagesInGit(opts) {
     }
 
     function getLastPage(done) {
-      fileAbstractionForText.get(
+      fileAbstraction.get(
         metaDir + '/' + lastPageIndex + '.json',
         decideResult
       );
 
-      function decideResult(error, gitPackage) {
+      function decideResult(error, package) {
         if (error) {
           done(error);
-        } else if (gitPackage.content) {
-          done(null, JSON.parse(gitPackage.content));
+        } else if (package.content) {
+          done(null, JSON.parse(package.content));
         } else {
           done(null, []);
         }
@@ -76,20 +69,20 @@ function AddCellsToPagesInGit(opts) {
       callNextTick(done);
     }
 
-    function updatePagesInGit(done) {
+    function updatePagesPersistent(done) {
       var q = queue(1);
       updatedPagesPackage.updatedPages.forEach(queuePageUpdate);
       q.awaitAll(done);
 
       function queuePageUpdate(page) {
-        q.defer(updatePageInGit, page);
+        q.defer(updatePagePersistent, page);
       }
     }
 
-    function updatePageInGit(page, done) {
+    function updatePagePersistent(page, done) {
       var filePath = metaDir + '/' + page.index + '.json';
 
-      fileAbstractionForText.update(
+      fileAbstraction.update(
         {
           filePath: filePath,
           content: JSON.stringify(page.cells),
@@ -98,17 +91,17 @@ function AddCellsToPagesInGit(opts) {
         passAfterDelay
       );
 
-      function passAfterDelay(error, pageGitPackage) {
-        setTimeout(passPageUpdatePackage, 1000);
+      function passAfterDelay(error, pagePersistentPackage) {
+        setTimeout(passPageUpdatePackage, skipDelays ? 0 : 1000);
 
         function passPageUpdatePackage() {
-          done(error, pageGitPackage);
+          done(error, pagePersistentPackage);
         }
       }
     }
 
-    function updateLastPageIndex(pagesGitPackages, done) {
-      fileAbstractionForText.update(
+    function updateLastPageIndex(pagesPersistentPackages, done) {
+      fileAbstraction.update(
         {
           filePath: lastPagePath,
           content: '' + updatedPagesPackage.newLastPageIndex
@@ -121,21 +114,24 @@ function AddCellsToPagesInGit(opts) {
       callNextTick(done, null, updatedPagesPackage);
     }
   }
+
+  // Sometimes, a commit does not "take" completely even though the API responds.
+  // Then, you can end up getting the SHA for a file just *before* it updates from
+  // that last commit. So: wait.
+  function postPageUpdateDelay(pagesPersistentPackages, done) {
+    setTimeout(
+      () => done(null, pagesPersistentPackages),
+      skipDelays ? 0 : 2000
+    );
+  }
+
+  function prePageUpdateDelay(done) {
+    setTimeout(done, skipDelays ? 0 : 2000);
+  }
+
+  function postIndexUpdateDelay(content, done) {
+    setTimeout(done, skipDelays ? 0 : 2000);
+  }
 }
 
-// Sometimes, a commit does not "take" completely even though the API responds.
-// Then, you can end up getting the SHA for a file just *before* it updates from
-// that last commit. So: wait.
-function postPageUpdateDelay(pagesGitPackages, done) {
-  setTimeout(() => done(null, pagesGitPackages), 2000);
-}
-
-function prePageUpdateDelay(done) {
-  setTimeout(done, 2000);
-}
-
-function postIndexUpdateDelay(content, done) {
-  setTimeout(done, 2000);
-}
-
-module.exports = AddCellsToPagesInGit;
+module.exports = AddCellsToPagesPersistent;
