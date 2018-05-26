@@ -1,9 +1,9 @@
+/* global process */
 var test = require('tape');
 var StreamTestBed = require('through-stream-testbed');
-var AddSinglePageInGit = require('../../transforms/add-single-page-in-git');
-var config = require('../../config');
-var request = require('request');
+var AddSinglePagePersistent = require('../../transforms/add-single-page-persistent');
 var randomId = require('idmaker').randomId;
+var getFileAbstractforEnv = require('../fixtures/get-file-abstraction-for-env');
 
 var cell = {
   id: randomId(8),
@@ -11,20 +11,18 @@ var cell = {
   htmlFragment: `<div>test fragment ${randomId(8)}</div>`
 };
 
-var addSinglePageInGit = AddSinglePageInGit({
-  branch: 'master',
-  gitRepoOwner: config.githubTest.gitRepoOwner,
-  gitToken: config.githubTest.gitToken,
-  repo: config.githubTest.repo,
-  request: request,
-  shouldSetUserAgent: true,
-  htmlDir: 'video'
+var addSinglePagePersistent = AddSinglePagePersistent({
+  htmlDir: 'video',
+  title: 'Single page test',
+  footerHTML: '<footer>Single page footer</footer>',
+  fileAbstraction: getFileAbstractforEnv(),
+  skipDelays: process.env.ABSTRACTION !== 'GitHubFile'
 });
 
 test(
   'Test adding single video page to index in git',
   StreamTestBed({
-    transformFn: addSinglePageInGit,
+    transformFn: addSinglePagePersistent,
     inputItems: [cell],
     checkCollectedStreamOutput: checkGitResults,
     checkOutputItem: checkGitResult

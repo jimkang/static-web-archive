@@ -7,7 +7,8 @@ function BufferToPersistence({
   mediaDir,
   metaDir,
   fileAbstractionForText,
-  fileAbstractionForBuffers
+  fileAbstractionForBuffers,
+  skipDelays = false
 }) {
   return bufferToPersistence;
 
@@ -53,10 +54,10 @@ function BufferToPersistence({
       done();
     }
   }
-}
 
-function wait(done) {
-  setTimeout(done, 2000);
+  function wait(done) {
+    setTimeout(done, skipDelays ? 0 : 2000);
+  }
 }
 
 module.exports = BufferToPersistence;

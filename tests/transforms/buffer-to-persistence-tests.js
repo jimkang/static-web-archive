@@ -89,7 +89,8 @@ if (process.env.ABSTRACTION === 'GitHubFile') {
     fileAbstractionForText: fileAbstraction,
     fileAbstractionForBuffers: fileAbstraction,
     mediaDir: 'video/files',
-    metaDir: 'video/meta'
+    metaDir: 'video/meta',
+    skipDelays: true
   });
 }
 

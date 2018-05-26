@@ -1,25 +1,16 @@
-var encoders = require('../base-64-encoders');
-var defaults = require('lodash.defaults');
-var cloneDeep = require('lodash.clonedeep');
-var GitHubFile = require('github-file');
 var template = require('../page-template');
 var sb = require('standard-bail')();
 
-function AddSinglePageInGit(opts) {
-  const htmlDir = opts.htmlDir;
-  const title = opts.title;
-  const footerHTML = opts.footerHTML;
+function AddSinglePagePersistent({
+  htmlDir,
+  title,
+  footerHTML,
+  fileAbstraction,
+  skipDelays = false
+}) {
+  return addSinglePagePersistent;
 
-  var fileAbstractionForText = GitHubFile(
-    defaults(cloneDeep(opts), {
-      encodeInBase64: encoders.encodeTextInBase64,
-      decodeFromBase64: encoders.decodeFromBase64ToText
-    })
-  );
-
-  return addSinglePageInGit;
-
-  function addSinglePageInGit(cellToAdd, enc, addCellsDone) {
+  function addSinglePagePersistent(cellToAdd, enc, addCellsDone) {
     var html =
       template.getHeader(title) +
       '\n' +
@@ -33,7 +24,7 @@ function AddSinglePageInGit(opts) {
     }
     filePath += cellToAdd.id + '.html';
 
-    fileAbstractionForText.update(
+    fileAbstraction.update(
       {
         filePath: filePath,
         content: html,
@@ -43,7 +34,7 @@ function AddSinglePageInGit(opts) {
     );
 
     function passResultsAfterDelay() {
-      setTimeout(passResults, 2000);
+      setTimeout(passResults, skipDelays ? 0 : 2000);
     }
 
     function passResults() {
@@ -53,4 +44,4 @@ function AddSinglePageInGit(opts) {
   }
 }
 
-module.exports = AddSinglePageInGit;
+module.exports = AddSinglePagePersistent;
