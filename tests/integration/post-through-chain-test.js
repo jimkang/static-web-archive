@@ -1,4 +1,4 @@
-/* global __dirname */
+/* global __dirname, process */
 
 var test = require('tape');
 var createPostingStreamChain = require('../../create-posting-stream-chain');
@@ -39,7 +39,10 @@ test('Should be able to post to stream and get HTML into git', chainTest);
 
 function chainTest(t) {
   var postingStreamChain = createPostingStreamChain({
-    config: config.githubTest
+    config: config.githubTest,
+    fileAbstractionType:
+      process.env.ABSTRACTION === 'GitHubFile' ? 'GitHubFile' : 'fs',
+    rootPath: `${__dirname}/../file-abstractions/test-root`
   });
   postingStreamChain.on('error', logError);
   testPackages.forEach(writeToStream);

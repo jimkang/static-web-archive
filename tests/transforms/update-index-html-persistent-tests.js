@@ -94,4 +94,3 @@ function checkResult(t, resultCell) {
   t.ok(resultCell.indexesHTML.length > 0, 'There is at least one index html.');
   console.log(resultCell.indexesHTML);
 }
-

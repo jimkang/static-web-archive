@@ -6,7 +6,10 @@ var sb = require('standard-bail')();
 var template = require('../page-template');
 
 function UpdateIndexHTMLPersistent({
-  htmlDir, title, footerHTML, fileAbstraction
+  htmlDir,
+  title,
+  footerHTML,
+  fileAbstraction
 }) {
   return updateIndexHTMLPersistent;
 

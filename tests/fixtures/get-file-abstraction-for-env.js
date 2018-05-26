@@ -36,5 +36,3 @@ function getFileAbstractforEnv() {
 }
 
 module.exports = getFileAbstractforEnv;
-
-

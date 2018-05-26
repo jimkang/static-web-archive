@@ -2,65 +2,101 @@
 
 var ndjson = require('ndjson');
 var through2 = require('through2');
-var BufferToGit = require('./transforms/buffer-to-git');
+var BufferToPersistence = require('./transforms/buffer-to-persistence');
 var addHTMLFragment = require('./transforms/add-html-fragment');
 var request = require('request');
-var AddCellsToPagesInGit = require('./transforms/add-cells-to-pages-in-git');
-var UpdateIndexHTMLInGit = require('./transforms/update-index-html-in-git');
-var AddSinglePageInGit = require('./transforms/add-single-page-in-git');
+var AddCellsToPagesPersistent = require('./transforms/add-cells-to-pages-persistent');
+var UpdateIndexHTMLPersistent = require('./transforms/update-index-html-persistent');
+var AddSinglePagePersistent = require('./transforms/add-single-page-persistent');
+var FSFile = require('./file-abstractions/fs-file');
+var GitHubFile = require('github-file');
+var cloneDeep = require('lodash.clonedeep');
 var defaults = require('lodash.defaults');
+var encoders = require('./base-64-encoders');
 
 function createPostingStreamChain({
   config,
   title = 'A Static Web Archive',
   footerHTML = '',
-  maxEntriesPerPage
+  maxEntriesPerPage,
+  fileAbstractionType = 'fs',
+  rootPath
 }) {
   var gitOpts = {
     branch: 'gh-pages',
     gitRepoOwner: config.gitRepoOwner,
     gitToken: config.gitToken,
     repo: config.repo,
-    request: request,
-    shouldSetUserAgent: true,
-    mediaDir: 'media',
-    metaDir: 'meta'
+    request,
+    shouldSetUserAgent: true
   };
 
-  var bufferToGit = BufferToGit(gitOpts);
-  var addCellsToPagesInGit = AddCellsToPagesInGit(
-    defaults({ maxEntriesPerPage }, gitOpts)
+  var baseOpts = {
+    mediaDir: 'media',
+    metaDir: 'meta',
+    skipDelays: fileAbstractionType !== 'GithubFile'
+  };
+
+  if (fileAbstractionType === 'GitHubFile') {
+    let fileAbstractionForText = GitHubFile(
+      defaults(cloneDeep(gitOpts), {
+        encodeInBase64: encoders.encodeTextInBase64,
+        decodeFromBase64: encoders.decodeFromBase64ToText
+      })
+    );
+    baseOpts.fileAbstraction = fileAbstractionForText;
+    baseOpts.fileAbstractionForText = fileAbstractionForText;
+    baseOpts.fileAbstractionForBuffers = GitHubFile(
+      defaults(cloneDeep(gitOpts), {
+        encodeInBase64: encoders.encodeInBase64,
+        decodeFromBase64: encoders.decodeFromBase64
+      })
+    );
+  } else {
+    let fileAbstraction = FSFile({
+      rootPath
+    });
+    baseOpts.fileAbstraction = fileAbstraction;
+    baseOpts.fileAbstractionForText = fileAbstraction;
+    baseOpts.fileAbstractionForBuffers = fileAbstraction;
+  }
+  var bufferToPersistence = BufferToPersistence(baseOpts);
+  var addCellsToPagesPersistent = AddCellsToPagesPersistent(
+    defaults({ maxEntriesPerPage }, baseOpts)
   );
-  var updateIndexHTMLInGit = UpdateIndexHTMLInGit(
-    defaults({ title, footerHTML }, gitOpts)
+  var updateIndexHTMLPersistent = UpdateIndexHTMLPersistent(
+    defaults({ title, footerHTML }, baseOpts)
   );
-  var addSinglePageInGit = AddSinglePageInGit(
-    defaults({ title, footerHTML }, gitOpts)
+  var addSinglePagePersistent = AddSinglePagePersistent(
+    defaults({ title, footerHTML }, baseOpts)
   );
 
-  var bufferToGitStream = createStreamWithTransform(bufferToGit, logError);
+  var bufferToPersistenceStream = createStreamWithTransform(
+    bufferToPersistence,
+    logError
+  );
   var addHTMLFragmentStream = createStreamWithTransform(
     addHTMLFragment,
     logError
   );
   var updatePagesStream = createStreamWithTransform(
-    addCellsToPagesInGit,
+    addCellsToPagesPersistent,
     logError
   );
-  var updateIndexHTMLInGitStream = createStreamWithTransform(
-    updateIndexHTMLInGit,
+  var updateIndexHTMLPersistentStream = createStreamWithTransform(
+    updateIndexHTMLPersistent,
     logError
   );
-  var addSinglePageInGitStream = createStreamWithTransform(
-    addSinglePageInGit,
+  var addSinglePagePersistentStream = createStreamWithTransform(
+    addSinglePagePersistent,
     logError
   );
 
-  bufferToGitStream
+  bufferToPersistenceStream
     .pipe(addHTMLFragmentStream)
-    .pipe(addSinglePageInGitStream)
+    .pipe(addSinglePagePersistentStream)
     .pipe(updatePagesStream)
-    .pipe(updateIndexHTMLInGitStream)
+    .pipe(updateIndexHTMLPersistentStream)
     .pipe(ndjson.stringify())
     .pipe(process.stdout);
 
@@ -68,7 +104,7 @@ function createPostingStreamChain({
   //   console.log('updatedPagesInfo', JSON.stringify(updatedPagesInfo, null, 2));
   // }
 
-  return bufferToGitStream;
+  return bufferToPersistenceStream;
 }
 
 function createStreamWithTransform(transform, errorCallback) {
