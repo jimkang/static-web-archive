@@ -22,14 +22,6 @@ function createPostingStreamChain({
   fileAbstractionType = 'fs',
   rootPath
 }) {
-  var gitOpts = {
-    branch: 'gh-pages',
-    gitRepoOwner: config.gitRepoOwner,
-    gitToken: config.gitToken,
-    repo: config.repo,
-    request,
-    shouldSetUserAgent: true
-  };
 
   var baseOpts = {
     mediaDir: 'media',
@@ -38,6 +30,14 @@ function createPostingStreamChain({
   };
 
   if (fileAbstractionType === 'GitHubFile') {
+    let gitOpts = {
+      branch: 'gh-pages',
+      gitRepoOwner: config.gitRepoOwner,
+      gitToken: config.gitToken,
+      repo: config.repo,
+      request,
+      shouldSetUserAgent: true
+    };
     let fileAbstractionForText = GitHubFile(
       defaults(cloneDeep(gitOpts), {
         encodeInBase64: encoders.encodeTextInBase64,
