@@ -1,7 +1,12 @@
 var titleRefRegex = /_TITLE_REF/g;
 var footerRegex = /_FOOTER_REF/g;
 
-function getHeader(title) {
+function getHeader(title, homeLink) {
+  var titleHTML = title;
+  if (homeLink) {
+    titleHTML = `<a href="${homeLink}">${title}</a>`;
+  }
+
   return `<html>
   <head>
     <title>_TITLE_REF</title>
@@ -17,7 +22,7 @@ function getHeader(title) {
   <h1>_TITLE_REF</h1>
 
   <section class="media">
-    <ul class="media-list">`.replace(titleRefRegex, title);
+    <ul class="media-list">`.replace(titleRefRegex, titleHTML);
 }
 
 function getFooter({ previousIndexHTML, footerHTML }) {

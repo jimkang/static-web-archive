@@ -8,6 +8,7 @@ var template = require('../page-template');
 function UpdateIndexHTMLPersistent({
   htmlDir,
   title,
+  homeLink,
   footerHTML,
   fileAbstraction
 }) {
@@ -24,7 +25,7 @@ function UpdateIndexHTMLPersistent({
     function makeIndexHTMLFromPage(page) {
       return makeIndexHTMLFromPageSpec({
         mostRecentPageIndex: cell.newLastPageIndex,
-        header: template.getHeader(title),
+        header: template.getHeader(title, homeLink),
         footer: template.getFooter({
           previousIndexHTML: getPreviousIndexHTML(page),
           footerHTML

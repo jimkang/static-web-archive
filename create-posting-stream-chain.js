@@ -17,12 +17,12 @@ var encoders = require('./base-64-encoders');
 function createPostingStreamChain({
   config,
   title = 'A Static Web Archive',
+  homeLink,
   footerHTML = '',
   maxEntriesPerPage,
   fileAbstractionType = 'fs',
   rootPath
 }) {
-
   var baseOpts = {
     mediaDir: 'media',
     metaDir: 'meta',
@@ -65,10 +65,10 @@ function createPostingStreamChain({
     defaults({ maxEntriesPerPage }, baseOpts)
   );
   var updateIndexHTMLPersistent = UpdateIndexHTMLPersistent(
-    defaults({ title, footerHTML }, baseOpts)
+    defaults({ title, footerHTML, homeLink }, baseOpts)
   );
   var addSinglePagePersistent = AddSinglePagePersistent(
-    defaults({ title, footerHTML }, baseOpts)
+    defaults({ title, footerHTML, homeLink }, baseOpts)
   );
 
   var bufferToPersistenceStream = createStreamWithTransform(

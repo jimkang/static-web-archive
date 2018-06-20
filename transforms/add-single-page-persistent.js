@@ -4,6 +4,7 @@ var sb = require('standard-bail')();
 function AddSinglePagePersistent({
   htmlDir,
   title,
+  homeLink,
   footerHTML,
   fileAbstraction,
   skipDelays = false
@@ -12,7 +13,7 @@ function AddSinglePagePersistent({
 
   function addSinglePagePersistent(cellToAdd, enc, addCellsDone) {
     var html =
-      template.getHeader(title) +
+      template.getHeader(title, homeLink) +
       '\n' +
       cellToAdd.htmlFragment +
       '\n' +
