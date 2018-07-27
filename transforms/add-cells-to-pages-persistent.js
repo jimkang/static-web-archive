@@ -4,6 +4,7 @@ var waterfall = require('async-waterfall');
 var curry = require('lodash.curry');
 var queue = require('d3-queue').queue;
 var AddCellsToPages = require('../add-cells-to-pages');
+var getPageCells = require('../get-page-cells');
 
 function AddCellsToPagesPersistent({
   metaDir,
@@ -45,20 +46,10 @@ function AddCellsToPagesPersistent({
     }
 
     function getLastPage(done) {
-      fileAbstraction.get(
-        metaDir + '/' + lastPageIndex + '.json',
-        decideResult
+      getPageCells(
+        { pageIndex: lastPageIndex, metaDir, fileAbstraction },
+        done
       );
-
-      function decideResult(error, package) {
-        if (error) {
-          done(error);
-        } else if (package.content) {
-          done(null, JSON.parse(package.content));
-        } else {
-          done(null, []);
-        }
-      }
     }
 
     function addCells(lastPageCells, done) {

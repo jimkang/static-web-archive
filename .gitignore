@@ -5,3 +5,5 @@ config.mk
 data/*
 tests/output/*
 tests/file-abstractions/test-root/*
+tests/rss-test-archive-root/*
+*.swp

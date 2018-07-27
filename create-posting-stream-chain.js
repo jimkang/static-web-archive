@@ -13,6 +13,10 @@ var GitHubFile = require('github-file');
 var cloneDeep = require('lodash.clonedeep');
 var defaults = require('lodash.defaults');
 var encoders = require('./base-64-encoders');
+var UpdateRSS = require('./update-rss');
+
+var updateRSS = UpdateRSS({
+});
 
 function createPostingStreamChain({
   config,
@@ -21,7 +25,8 @@ function createPostingStreamChain({
   footerHTML = '',
   maxEntriesPerPage,
   fileAbstractionType = 'fs',
-  rootPath
+  rootPath,
+  generateRSS = true
 }) {
   var baseOpts = {
     mediaDir: 'media',
@@ -91,6 +96,9 @@ function createPostingStreamChain({
     addSinglePagePersistent,
     logError
   );
+  if (generateRSS) {
+    updateIndexHTMLPersistentStream.on('end', updateRSS);
+  }
 
   bufferToPersistenceStream
     .pipe(addHTMLFragmentStream)

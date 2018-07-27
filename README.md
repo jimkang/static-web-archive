@@ -85,6 +85,19 @@ You can alternately persist to a GitHub repository instead of the local filesyst
 Tests
 -----
 
+Create a `config.js` file in the project root that looks like this:
+
+    module.exports = {
+      rootPath: 'tests/test-archive-root',
+      githubTest: {
+        gitRepoOwner: '<Your GitHub username>',
+        gitToken: '<A GitHub token from your GitHub settings>',
+        repo: 'test-repo-name'
+      }
+    };
+
+You can put dummy values in for the GitHub properties if you'd like to skip the GitHub tests.
+
 Run tests with `make test`.
 
 License

@@ -1,0 +1,34 @@
+/* global __dirname */
+var test = require('tape');
+var assertNoError = require('assert-no-error');
+var UpdateRSS = require('../update-rss');
+var getFileAbstraction = require('./fixtures/get-file-abstraction-for-env');
+var fileAbstraction = getFileAbstraction(__dirname + '/rss-test-archive-root');
+var fs = require('fs');
+
+test('Test updating RSS', updateRSSTest);
+
+function updateRSSTest(t) {
+  var correctRSSBuffer = fs.readFileSync(__dirname + '/fixtures/correct.rss', {
+    encoding: null
+  });
+
+  var updateRSS = UpdateRSS({
+    rssFeedOpts: {
+      title: 'RSS weblog'
+    },
+    archiveBaseURL: 'https://smidgeo.com/notes/deathmtn',
+    fileAbstraction
+  });
+  updateRSS(checkRSS);
+
+  function checkRSS(error) {
+    assertNoError(t.ok, error, 'No error while updating RSS.');
+    var rssBuffer = fs.readFileSync(
+      __dirname + '/rss-test-archive-root/rss/index.rss',
+      { encoding: null }
+    );
+    t.ok(rssBuffer.equals(correctRSSBuffer), 'RSS file is correct.');
+    t.end();
+  }
+}

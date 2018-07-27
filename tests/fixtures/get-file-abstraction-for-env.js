@@ -7,8 +7,9 @@ var defaults = require('lodash.defaults');
 var encoders = require('../../base-64-encoders');
 var config = require('../../config');
 var request = require('request');
+const defaultRootPath = `${__dirname}/../file-abstractions/test-root`;
 
-function getFileAbstractforEnv() {
+function getFileAbstractforEnv(rootPath = defaultRootPath) {
   var fileAbstraction;
 
   if (process.env.ABSTRACTION === 'GitHubFile') {
@@ -29,7 +30,7 @@ function getFileAbstractforEnv() {
     );
   } else {
     fileAbstraction = FSFile({
-      rootPath: `${__dirname}/../file-abstractions/test-root`
+      rootPath
     });
   }
   return fileAbstraction;
