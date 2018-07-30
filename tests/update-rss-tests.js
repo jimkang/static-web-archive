@@ -9,9 +9,9 @@ var fs = require('fs');
 test('Test updating RSS', updateRSSTest);
 
 function updateRSSTest(t) {
-  var correctRSSBuffer = fs.readFileSync(__dirname + '/fixtures/correct.rss', {
-    encoding: null
-  });
+  var correctRSSText = removeLastBuildDate(
+    fs.readFileSync(__dirname + '/fixtures/correct.rss', { encoding: 'utf8' })
+  );
 
   var updateRSS = UpdateRSS({
     rssFeedOpts: {
@@ -24,11 +24,21 @@ function updateRSSTest(t) {
 
   function checkRSS(error) {
     assertNoError(t.ok, error, 'No error while updating RSS.');
-    var rssBuffer = fs.readFileSync(
-      __dirname + '/rss-test-archive-root/rss/index.rss',
-      { encoding: null }
+    var rssText = removeLastBuildDate(
+      fs.readFileSync(__dirname + '/rss-test-archive-root/rss/index.rss', {
+        encoding: 'utf8'
+      })
     );
-    t.ok(rssBuffer.equals(correctRSSBuffer), 'RSS file is correct.');
+    t.equals(rssText, correctRSSText, 'RSS file is correct.');
     t.end();
   }
+}
+
+function removeLastBuildDate(text) {
+  var lines = text.split('\n');
+  return lines.filter(isNotLastBuildDate).join('\n');
+}
+
+function isNotLastBuildDate(line) {
+  return line.indexOf('<lastBuildDate>') === -1;
 }

@@ -15,8 +15,7 @@ var defaults = require('lodash.defaults');
 var encoders = require('./base-64-encoders');
 var UpdateRSS = require('./update-rss');
 
-var updateRSS = UpdateRSS({
-});
+var updateRSS = UpdateRSS({});
 
 function createPostingStreamChain({
   config,
