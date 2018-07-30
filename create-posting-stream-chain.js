@@ -13,6 +13,7 @@ var GitHubFile = require('github-file');
 var cloneDeep = require('lodash.clonedeep');
 var defaults = require('lodash.defaults');
 var encoders = require('./base-64-encoders');
+var UpdateRSS = require('./update-rss');
 
 function createPostingStreamChain({
   config,
@@ -21,7 +22,10 @@ function createPostingStreamChain({
   footerHTML = '',
   maxEntriesPerPage,
   fileAbstractionType = 'fs',
-  rootPath
+  rootPath,
+  generateRSS = true,
+  rssFeedOpts = {},
+  archiveBaseURL = '/'
 }) {
   var baseOpts = {
     mediaDir: 'media',
@@ -60,6 +64,18 @@ function createPostingStreamChain({
     baseOpts.fileAbstractionForText = fileAbstraction;
     baseOpts.fileAbstractionForBuffers = fileAbstraction;
   }
+  if (!rssFeedOpts.title) {
+    rssFeedOpts.title = title;
+  }
+  var updateRSS = UpdateRSS({
+    rssFeedOpts,
+    archiveBaseURL,
+    fileAbstraction: baseOpts.fileAbstraction
+  });
+  function delayedUpdateRSS() {
+    setTimeout(updateRSS, 5000);
+  }
+
   var bufferToPersistence = BufferToPersistence(baseOpts);
   var addCellsToPagesPersistent = AddCellsToPagesPersistent(
     defaults({ maxEntriesPerPage }, baseOpts)
@@ -91,6 +107,15 @@ function createPostingStreamChain({
     addSinglePagePersistent,
     logError
   );
+  if (generateRSS) {
+    if (fileAbstractionType === 'GitHubFile') {
+      // I know it's more complex than this, but the GitHub API
+      // kinda sucks.
+      updateIndexHTMLPersistentStream.on('end', delayedUpdateRSS);
+    } else {
+      updateIndexHTMLPersistentStream.on('end', updateRSS);
+    }
+  }
 
   bufferToPersistenceStream
     .pipe(addHTMLFragmentStream)

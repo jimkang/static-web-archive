@@ -82,10 +82,41 @@ You can alternately persist to a GitHub repository instead of the local filesyst
       }
     })
 
+RSS
+---
+
+If you want to generate an RSS feed for the lastest page of cells, you can provide the following opts to the constructor:
+
+- `generateRSS`: Set it to true to generate RSS.
+- `rssFeedOpts`: Opts to pass to the [rss module](https://github.com/dylang/node-rss#feedoptions) constructor. If you don't set anything here, it'll just set the title to the title of the archive.
+- `archiveBaseURL`: This will be used to create links to your archive in the RSS entries.
+
+Note: I have not actually gotten RSS to work when using 'GitHubFile' as the fileAbstractionType. Definitely works when you default the fileAbstractionType to the local FS.
+
 Tests
 -----
 
+Create a `config.js` file in the project root that looks like this:
+
+    module.exports = {
+      rootPath: 'tests/test-archive-root',
+      githubTest: {
+        gitRepoOwner: '<Your GitHub username>',
+        gitToken: '<A GitHub token from your GitHub settings>',
+        repo: 'test-repo-name'
+      }
+    };
+
+You can put dummy values in for the GitHub properties if you'd like to skip the GitHub tests.
+
 Run tests with `make test`.
+
+Development
+----
+
+- Please run Prettier (you can use `make prettier`) before each commit.
+- Same with `eslint .`.
+- Favor callbacks over promises in this repo. If you do use promises, please catch all rejections and bubble them up.
 
 License
 -------

@@ -42,7 +42,9 @@ function chainTest(t) {
     config: config.githubTest,
     fileAbstractionType:
       process.env.ABSTRACTION === 'GitHubFile' ? 'GitHubFile' : 'fs',
-    rootPath: `${__dirname}/../file-abstractions/test-root`
+    rootPath: `${__dirname}/../file-abstractions/test-root`,
+    generateRSS: true,
+    archiveBaseURL: 'https://smidgeo.com/notes/deathmtn'
   });
   postingStreamChain.on('error', logError);
   testPackages.forEach(writeToStream);
