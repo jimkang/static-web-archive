@@ -24,7 +24,13 @@ function UpdateRSSPersistent({
 
     function passCell(error) {
       if (error) {
-        updateDone(error);
+        if (error.name === 'NoRecentPageError') {
+          // This is OK, and not a reason to stop the stream.
+          console.error(error);
+          updateDone(null, cell);
+        } else {
+          updateDone(error);
+        }
       } else {
         updateDone(null, cell);
       }

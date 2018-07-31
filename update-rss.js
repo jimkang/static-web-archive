@@ -28,9 +28,11 @@ function UpdateRSS({
 
       function inspectResponse(result) {
         if (!result.content || result.length < 1) {
-          // There is no most recent page.
-          console.error('There is no recent page to make RSS entries for.');
-          done();
+          let error = new Error(
+            'There is no recent page to make RSS entries for.'
+          );
+          error.name = 'NoRecentPageError';
+          done(error);
         } else {
           done(null, parseInt(result.content, 10));
         }
