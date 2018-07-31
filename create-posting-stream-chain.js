@@ -13,7 +13,8 @@ var GitHubFile = require('github-file');
 var cloneDeep = require('lodash.clonedeep');
 var defaults = require('lodash.defaults');
 var encoders = require('./base-64-encoders');
-var UpdateRSS = require('./update-rss');
+var UpdateRSSPersistent = require('./transforms/update-rss-persistent');
+var compact = require('lodash.compact');
 
 function createPostingStreamChain({
   config,
@@ -67,15 +68,6 @@ function createPostingStreamChain({
   if (!rssFeedOpts.title) {
     rssFeedOpts.title = title;
   }
-  var updateRSS = UpdateRSS({
-    rssFeedOpts,
-    archiveBaseURL,
-    fileAbstraction: baseOpts.fileAbstraction
-  });
-  function delayedUpdateRSS() {
-    setTimeout(updateRSS, 5000);
-  }
-
   var bufferToPersistence = BufferToPersistence(baseOpts);
   var addCellsToPagesPersistent = AddCellsToPagesPersistent(
     defaults({ maxEntriesPerPage }, baseOpts)
@@ -107,29 +99,53 @@ function createPostingStreamChain({
     addSinglePagePersistent,
     logError
   );
+
+  var updateRSSPersistentStream;
+
   if (generateRSS) {
+    let rssDelay = 0;
     if (fileAbstractionType === 'GitHubFile') {
       // I know it's more complex than this, but the GitHub API
       // kinda sucks.
-      updateIndexHTMLPersistentStream.on('end', delayedUpdateRSS);
-    } else {
-      updateIndexHTMLPersistentStream.on('end', updateRSS);
+      rssDelay = 5000;
     }
+    updateRSSPersistentStream = createStreamWithTransform(
+      UpdateRSSPersistent({
+        rssFeedOpts,
+        archiveBaseURL,
+        fileAbstraction: baseOpts.fileAbstraction,
+        delay: rssDelay
+      }),
+      logError
+    );
   }
 
-  bufferToPersistenceStream
-    .pipe(addHTMLFragmentStream)
-    .pipe(addSinglePagePersistentStream)
-    .pipe(updatePagesStream)
-    .pipe(updateIndexHTMLPersistentStream)
-    .pipe(ndjson.stringify())
-    .pipe(process.stdout);
-
-  // function updateIndexHTML(updatedPagesInfo) {
-  //   console.log('updatedPagesInfo', JSON.stringify(updatedPagesInfo, null, 2));
-  // }
+  pipeEmUp(
+    compact([
+      bufferToPersistenceStream,
+      addHTMLFragmentStream,
+      addSinglePagePersistentStream,
+      updatePagesStream,
+      updateIndexHTMLPersistentStream,
+      updateRSSPersistentStream,
+      ndjson.stringify(),
+      process.stdout
+    ])
+  );
 
   return bufferToPersistenceStream;
+}
+
+function pipeEmUp(streams) {
+  var piped;
+  for (var i = 0; i < streams.length; ++i) {
+    if (!piped) {
+      piped = streams[i];
+    } else {
+      piped = piped.pipe(streams[i]);
+    }
+  }
+  return piped;
 }
 
 function createStreamWithTransform(transform, errorCallback) {
