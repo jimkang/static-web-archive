@@ -1,6 +1,7 @@
 /* global __dirname, process */
 
 var FSFile = require('../../file-abstractions/fs-file');
+var LocalGit = require('../../file-abstractions/local-git');
 var GitHubFile = require('github-file');
 var cloneDeep = require('lodash.clonedeep');
 var defaults = require('lodash.defaults');
@@ -28,6 +29,10 @@ function getFileAbstractforEnv(rootPath = defaultRootPath) {
         decodeFromBase64: encoders.decodeFromBase64ToText
       })
     );
+  } else if (process.env.ABSTRACTION === 'LocalGit') {
+    fileAbstraction = LocalGit({
+      rootPath: `${__dirname}/../test-local-git-root`
+    });
   } else {
     fileAbstraction = FSFile({
       rootPath

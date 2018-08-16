@@ -109,6 +109,7 @@ Create a `config.js` file in the project root that looks like this:
 
 You can put dummy values in for the GitHub properties if you'd like to skip the GitHub tests. To set them up for real, create an empty repo for the test commits to go to. Then, get a token via GitHub Settings | Developer Settings | Personal access tokens. Create a token that has **repo** scope.
 
+Set up a git test directory with `make set-up-test-git-dir`.
 Run tests with `make test`.
 
 Development
