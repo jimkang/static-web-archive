@@ -40,8 +40,7 @@ test('Should be able to post to stream and get HTML into git', chainTest);
 function chainTest(t) {
   var postingStreamChain = createPostingStreamChain({
     config: config.githubTest,
-    fileAbstractionType:
-      process.env.ABSTRACTION === 'GitHubFile' ? 'GitHubFile' : 'fs',
+    fileAbstractionType: process.env.ABSTRACTION || 'fs',
     rootPath: `${__dirname}/../file-abstractions/test-root`,
     generateRSS: true,
     archiveBaseURL: 'https://smidgeo.com/notes/deathmtn'

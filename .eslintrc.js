@@ -8,8 +8,11 @@ module.exports = {
   rules: {
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single', { avoidEscape: true }],
+    quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'no-console': 'off'
+  },
+  parserOptions: {
+    ecmaVersion: 2017
   }
 };

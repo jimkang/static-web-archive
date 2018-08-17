@@ -9,6 +9,7 @@ var AddCellsToPagesPersistent = require('./transforms/add-cells-to-pages-persist
 var UpdateIndexHTMLPersistent = require('./transforms/update-index-html-persistent');
 var AddSinglePagePersistent = require('./transforms/add-single-page-persistent');
 var FSFile = require('./file-abstractions/fs-file');
+var LocalGit = require('./file-abstractions/local-git');
 var GitHubFile = require('github-file');
 var cloneDeep = require('lodash.clonedeep');
 var defaults = require('lodash.defaults');
@@ -58,9 +59,14 @@ function createPostingStreamChain({
       })
     );
   } else {
-    let fileAbstraction = FSFile({
-      rootPath
-    });
+    let fileAbstraction;
+    if (fileAbstractionType === 'LocalGit') {
+      fileAbstraction = LocalGit({ rootPath });
+    } else {
+      fileAbstraction = FSFile({
+        rootPath
+      });
+    }
     baseOpts.fileAbstraction = fileAbstraction;
     baseOpts.fileAbstractionForText = fileAbstraction;
     baseOpts.fileAbstractionForBuffers = fileAbstraction;

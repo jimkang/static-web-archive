@@ -82,6 +82,8 @@ You can alternately persist to a GitHub repository instead of the local filesyst
       }
     })
 
+The other alternative is the `fileAbstractionType` `LocalGit`. This will make a commit for each file you update. It is far more reliable than `GitHubFile`. The thing you have to do, however, is set up `rootPath` as a git repo. e.g. `git init` etc.
+
 RSS
 ---
 
@@ -109,6 +111,7 @@ Create a `config.js` file in the project root that looks like this:
 
 You can put dummy values in for the GitHub properties if you'd like to skip the GitHub tests. To set them up for real, create an empty repo for the test commits to go to. Then, get a token via GitHub Settings | Developer Settings | Personal access tokens. Create a token that has **repo** scope.
 
+Set up a git test directory with `make set-up-test-git-dir`.
 Run tests with `make test`.
 
 Development
