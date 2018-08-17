@@ -33,7 +33,7 @@
     "fs-extra": "^6.0.1",
     "github-file": "^1.1.2",
     "idmaker": "^0.1.1",
-    "isomorphic-git": "^0.28.3",
+    "isomorphic-git": "^0.12.3",
     "lodash.clonedeep": "^4.5.0",
     "lodash.compact": "^3.0.1",
     "lodash.curry": "^4.1.1",
