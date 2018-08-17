@@ -82,6 +82,8 @@ You can alternately persist to a GitHub repository instead of the local filesyst
       }
     })
 
+The other alternative is the `fileAbstractionType` `LocalGit`. This will make a commit for each file you update. It is far more reliable than `GitHubFile`. The thing you have to do, however, is set up `rootPath` as a git repo. e.g. `git init` etc.
+
 RSS
 ---
 
