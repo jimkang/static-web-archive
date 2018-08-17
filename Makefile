@@ -1,4 +1,4 @@
-GITDIR=tests/test-local-git-root
+GITDIR=tests/file-abstractions/test-root
 
 test: fs-tests local-git-tests git-tests
 	node tests/add-cells-to-pages-tests.js
@@ -7,7 +7,7 @@ test: fs-tests local-git-tests git-tests
 	ABSTRACTION=GitHubFile node tests/integration/post-through-chain-test.js
 
 clean-fs-test-root:
-	rm -rf tests/file-abstrctions/test-root/*
+	rm -rf tests/file-abstractions/test-root/*
 
 fs-tests: clean-fs-test-root
 	node tests/file-abstractions/fs-abstraction-tests.js
@@ -18,7 +18,7 @@ fs-tests: clean-fs-test-root
 	node tests/transforms/add-single-page-persistent-tests.js
 	node tests/update-rss-tests.js
 
-local-git-tests:
+local-git-tests: clean-fs-test-root set-up-test-git-dir
 	ABSTRACTION=LocalGit node tests/file-abstractions/fs-abstraction-tests.js
 	ABSTRACTION=LocalGit node tests/establish-last-page-index-tests.js
 	ABSTRACTION=LocalGit node tests/transforms/buffer-to-persistence-tests.js
@@ -44,14 +44,6 @@ prettier:
 set-up-test-git-dir:
 	mkdir -p $(GITDIR)
 	cd $(GITDIR) && \
-	  git init && \
-	  touch git-stub && \
-	  git add . && \
-	  git commit -a -m"Started." --author "Jim Kang <jimkang@gmail.com>"
-
-set-up-test-rss-git-dir:
-	mkdir -p tests/rss-test-archive-root
-	cd tests/rss-test-archive-root && \
 	  git init && \
 	  touch git-stub && \
 	  git add . && \
