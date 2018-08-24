@@ -25,7 +25,7 @@ function addHTMLFragment(cell, enc, done) {
     } else {
       cell.htmlFragment += `<img src="media/${
         cell.mediaFilename
-      }" alt="${cell.altText || cell.caption}"></video>`;
+      }" alt="${cell.altText || cell.caption}"></img>`;
     }
     cell.htmlFragment += `<div class="media-caption entry-meta">${
       cell.caption
