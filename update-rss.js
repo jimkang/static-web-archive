@@ -3,6 +3,8 @@ var getPageCells = require('./get-page-cells');
 var sb = require('standard-bail')();
 var RSS = require('rss');
 
+var mediaSrcRegex = / src="media\//g;
+
 // rssFeedOpts are options to be passed through to the RSS module instance.
 function UpdateRSS({
   rssDir = 'rss',
@@ -56,7 +58,7 @@ function UpdateRSS({
 
       function addItem(cell) {
         var item = {
-          description: cell.caption,
+          description: cell.htmlFragment.replace(mediaSrcRegex, ` src="${archiveBaseURL}/media/`),
           url: `${archiveBaseURL}/${cell.id}.html`,
           guid: cell.id,
           date: cell.date

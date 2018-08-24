@@ -4,17 +4,27 @@
         <description><![CDATA[RSS weblog]]></description>
         <link>http://github.com/dylang/node-rss</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 31 Jul 2018 11:09:40 GMT</lastBuildDate>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[TIL: Kids have imaginations potent enough to make them cry when they come up with sad stuff to imagine. ]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-UGbfVfvm.html">
+      <time datetime="2018-07-19T23:45:40.522Z">2018-7-19 19:45:40</time>
+    </a>
+  </div><div class="text-caption">TIL: Kids have imaginations potent enough to make them cry when they come up with sad stuff to imagine. </div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-UGbfVfvm.html</link>
             <guid isPermaLink="false">deathmtn-UGbfVfvm</guid>
             <pubDate>Thu, 19 Jul 2018 23:45:40 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[I've gotten up at 5 two days in a row now! Computer's been busted, but I've been able to use the time to make eggs. ]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-NZQlzdni.html">
+      <time datetime="2018-07-20T10:33:09.109Z">2018-7-20 06:33:09</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8121.JPG" alt="I've gotten up at 5 two days in a row now! Computer's been busted, but I've been able to use the tim"></video><div class="media-caption entry-meta">I've gotten up at 5 two days in a row now! Computer's been busted, but I've been able to use the time to make eggs. </div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-NZQlzdni.html</link>
             <guid isPermaLink="false">deathmtn-NZQlzdni</guid>
             <pubDate>Fri, 20 Jul 2018 10:33:09 GMT</pubDate>
@@ -22,28 +32,51 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[Welp, I ordered myself a Linux laptop.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-UMWIowih.html">
+      <time datetime="2018-07-20T14:27:32.162Z">2018-7-20 10:27:32</time>
+    </a>
+  </div><div class="text-caption">Welp, I ordered myself a Linux laptop.</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-UMWIowih.html</link>
             <guid isPermaLink="false">deathmtn-UMWIowih</guid>
             <pubDate>Fri, 20 Jul 2018 14:27:32 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[11-5-3-3. Still acclimating to the run; was puffin' rather hard.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-WiItOKtn.html">
+      <time datetime="2018-07-20T15:19:59.298Z">2018-7-20 11:19:59</time>
+    </a>
+  </div><div class="text-caption">11-5-3-3. Still acclimating to the run; was puffin' rather hard.</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-WiItOKtn.html</link>
             <guid isPermaLink="false">deathmtn-WiItOKtn</guid>
             <pubDate>Fri, 20 Jul 2018 15:19:59 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[The guy: "That's poison lava!"<br><br>🤔]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-fSFkLVMt.html">
+      <time datetime="2018-07-20T22:09:31.016Z">2018-7-20 18:09:31</time>
+    </a>
+  </div><div class="text-caption">The guy: "That's poison lava!"<br><br>🤔</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-fSFkLVMt.html</link>
             <guid isPermaLink="false">deathmtn-fSFkLVMt</guid>
             <pubDate>Fri, 20 Jul 2018 22:09:31 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[Blessed]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-ycAWwApk.html">
+      <time datetime="2018-07-22T12:40:42.886Z">2018-7-22 08:40:42</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8166.JPG" alt="Blessed"></video><div class="media-caption entry-meta">Blessed</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-ycAWwApk.html</link>
             <guid isPermaLink="false">deathmtn-ycAWwApk</guid>
             <pubDate>Sun, 22 Jul 2018 12:40:42 GMT</pubDate>
@@ -51,14 +84,25 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[It's been a while since we've had a rainy day, and I'm savoring the hell out of it. I kinda want to write a D&D adventure by hand.<br><br>Also, cleaned up some old code this morning before the guy got up; now feeling really like I can make stuff, even knowing I probably won't have much more time today. ]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-QQCwqSZS.html">
+      <time datetime="2018-07-22T13:37:59.621Z">2018-7-22 09:37:59</time>
+    </a>
+  </div><div class="text-caption">It's been a while since we've had a rainy day, and I'm savoring the hell out of it. I kinda want to write a D&D adventure by hand.<br><br>Also, cleaned up some old code this morning before the guy got up; now feeling really like I can make stuff, even knowing I probably won't have much more time today. </div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-QQCwqSZS.html</link>
             <guid isPermaLink="false">deathmtn-QQCwqSZS</guid>
             <pubDate>Sun, 22 Jul 2018 13:37:59 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[I'm rather taken by the idea of a map that is largely mountains and natural features but also shows individual buildings in towns. (The scale here is such 1 cm = 1 km, so many of these buildings are about 100 m long.)]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-jEvIegLp.html">
+      <time datetime="2018-07-22T14:31:59.917Z">2018-7-22 10:31:59</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8171.JPG" alt="I'm rather taken by the idea of a map that is largely mountains and natural features but also shows "></video><div class="media-caption entry-meta">I'm rather taken by the idea of a map that is largely mountains and natural features but also shows individual buildings in towns. (The scale here is such 1 cm = 1 km, so many of these buildings are about 100 m long.)</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-jEvIegLp.html</link>
             <guid isPermaLink="false">deathmtn-jEvIegLp</guid>
             <pubDate>Sun, 22 Jul 2018 14:31:59 GMT</pubDate>
@@ -66,14 +110,25 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[I locked myself out of the apartment for a couple of hours earlier today. There's not much to do out there for someone without a wallet or phone, as you'd expect. I walked down to the square to check the time, tossed some stuff out of my basement, got a book from a Little Free Library, found an old notebook and pen and wrote a few things down.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-fJNxjPJn.html">
+      <time datetime="2018-07-22T20:48:55.757Z">2018-7-22 16:48:55</time>
+    </a>
+  </div><div class="text-caption">I locked myself out of the apartment for a couple of hours earlier today. There's not much to do out there for someone without a wallet or phone, as you'd expect. I walked down to the square to check the time, tossed some stuff out of my basement, got a book from a Little Free Library, found an old notebook and pen and wrote a few things down.</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-fJNxjPJn.html</link>
             <guid isPermaLink="false">deathmtn-fJNxjPJn</guid>
             <pubDate>Sun, 22 Jul 2018 20:48:55 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[Oh, yeah, earlier today: 11-3-3-3-3. The run was a slog.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-WCtUKpuK.html">
+      <time datetime="2018-07-23T21:02:04.983Z">2018-7-23 17:02:04</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8171.JPG" alt="Oh, yeah, earlier today: 11-3-3-3-3. The run was a slog."></video><div class="media-caption entry-meta">Oh, yeah, earlier today: 11-3-3-3-3. The run was a slog.</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-WCtUKpuK.html</link>
             <guid isPermaLink="false">deathmtn-WCtUKpuK</guid>
             <pubDate>Mon, 23 Jul 2018 21:02:04 GMT</pubDate>
@@ -81,7 +136,12 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[The guy: "The train can go under a garden now!" I actually think this is a fantastic idea.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-qlASwvhJ.html">
+      <time datetime="2018-07-24T02:17:49.717Z">2018-7-23 22:17:49</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8218.JPG" alt="The guy: "The train can go under a garden now!" I actually think this is a fantastic idea."></video><div class="media-caption entry-meta">The guy: "The train can go under a garden now!" I actually think this is a fantastic idea.</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-qlASwvhJ.html</link>
             <guid isPermaLink="false">deathmtn-qlASwvhJ</guid>
             <pubDate>Tue, 24 Jul 2018 02:17:49 GMT</pubDate>
@@ -89,28 +149,51 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[10-2-2-2-2-4. As is natural, slipping off the peak a bit.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-VQvZYwgl.html">
+      <time datetime="2018-07-24T15:22:56.427Z">2018-7-24 11:22:56</time>
+    </a>
+  </div><div class="text-caption">10-2-2-2-2-4. As is natural, slipping off the peak a bit.</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-VQvZYwgl.html</link>
             <guid isPermaLink="false">deathmtn-VQvZYwgl</guid>
             <pubDate>Tue, 24 Jul 2018 15:22:56 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[I guess once you get a child's allergy under control, the Engine spawns a new one?]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-UzKLGWHb.html">
+      <time datetime="2018-07-25T11:32:04.199Z">2018-7-25 07:32:04</time>
+    </a>
+  </div><div class="text-caption">I guess once you get a child's allergy under control, the Engine spawns a new one?</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-UzKLGWHb.html</link>
             <guid isPermaLink="false">deathmtn-UzKLGWHb</guid>
             <pubDate>Wed, 25 Jul 2018 11:32:04 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[Every once in a while, I walk around and flash to a future in which I'm bound to a hospital bed, then I become really appreciative of walking around and vacuuming, et al.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-ZTJRkwBD.html">
+      <time datetime="2018-07-25T11:33:45.173Z">2018-7-25 07:33:45</time>
+    </a>
+  </div><div class="text-caption">Every once in a while, I walk around and flash to a future in which I'm bound to a hospital bed, then I become really appreciative of walking around and vacuuming, et al.</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-ZTJRkwBD.html</link>
             <guid isPermaLink="false">deathmtn-ZTJRkwBD</guid>
             <pubDate>Wed, 25 Jul 2018 11:33:45 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[11-4-3-3-3. It seems like a hot day, which is intimidating, but I'm finding that it doesn't get that much hotter when you exercise. Also, there was a nice breeze afterward.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-DvLRZXWW.html">
+      <time datetime="2018-07-25T16:18:34.231Z">2018-7-25 12:18:34</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8171.JPG" alt="11-4-3-3-3. It seems like a hot day, which is intimidating, but I'm finding that it doesn't get that"></video><div class="media-caption entry-meta">11-4-3-3-3. It seems like a hot day, which is intimidating, but I'm finding that it doesn't get that much hotter when you exercise. Also, there was a nice breeze afterward.</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-DvLRZXWW.html</link>
             <guid isPermaLink="false">deathmtn-DvLRZXWW</guid>
             <pubDate>Wed, 25 Jul 2018 16:18:34 GMT</pubDate>
@@ -118,7 +201,12 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[Cool rabbit guy]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-ijwrTAzd.html">
+      <time datetime="2018-07-25T22:04:56.241Z">2018-7-25 18:04:56</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8258.JPG" alt="Cool rabbit guy"></video><div class="media-caption entry-meta">Cool rabbit guy</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-ijwrTAzd.html</link>
             <guid isPermaLink="false">deathmtn-ijwrTAzd</guid>
             <pubDate>Wed, 25 Jul 2018 22:04:56 GMT</pubDate>
@@ -126,14 +214,25 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[10-5-4-3. Either my grip was weak or the bar was slippery. The run was not that bad, finally!]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-JepdBUxn.html">
+      <time datetime="2018-07-26T15:04:35.521Z">2018-7-26 11:04:35</time>
+    </a>
+  </div><div class="text-caption">10-5-4-3. Either my grip was weak or the bar was slippery. The run was not that bad, finally!</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-JepdBUxn.html</link>
             <guid isPermaLink="false">deathmtn-JepdBUxn</guid>
             <pubDate>Thu, 26 Jul 2018 15:04:35 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[Into the void]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-msEgNubj.html">
+      <time datetime="2018-07-27T00:39:14.554Z">2018-7-26 20:39:14</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8272.JPG" alt="Into the void"></video><div class="media-caption entry-meta">Into the void</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-msEgNubj.html</link>
             <guid isPermaLink="false">deathmtn-msEgNubj</guid>
             <pubDate>Fri, 27 Jul 2018 00:39:14 GMT</pubDate>
@@ -141,28 +240,51 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[11-5-4-3. Long pause between third and fourth sets because a ten-year-old rode up on a bike and worked in.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-zvAjDZRB.html">
+      <time datetime="2018-07-27T17:24:10.397Z">2018-7-27 13:24:10</time>
+    </a>
+  </div><div class="text-caption">11-5-4-3. Long pause between third and fourth sets because a ten-year-old rode up on a bike and worked in.</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-zvAjDZRB.html</link>
             <guid isPermaLink="false">deathmtn-zvAjDZRB</guid>
             <pubDate>Fri, 27 Jul 2018 17:24:10 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[Dare I say, I'm enjoying a Friday night? I saw some stuff on the internet, but then the guy showed me a bunch of numbers he came up with, and I remembered that dinner is taken care of, thanks to work leftovers.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-eKWrpEVL.html">
+      <time datetime="2018-07-27T22:27:44.804Z">2018-7-27 18:27:44</time>
+    </a>
+  </div><div class="text-caption">Dare I say, I'm enjoying a Friday night? I saw some stuff on the internet, but then the guy showed me a bunch of numbers he came up with, and I remembered that dinner is taken care of, thanks to work leftovers.</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-eKWrpEVL.html</link>
             <guid isPermaLink="false">deathmtn-eKWrpEVL</guid>
             <pubDate>Fri, 27 Jul 2018 22:27:44 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA["Hey, I only have one germ." —The guy]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-mewNncuX.html">
+      <time datetime="2018-07-27T22:53:31.637Z">2018-7-27 18:53:31</time>
+    </a>
+  </div><div class="text-caption">"Hey, I only have one germ." —The guy</div>
+</li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-mewNncuX.html</link>
             <guid isPermaLink="false">deathmtn-mewNncuX</guid>
             <pubDate>Fri, 27 Jul 2018 22:53:31 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[DH Lawrence was an idiot.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-bYRbWGkI.html">
+      <time datetime="2018-07-28T00:39:15.851Z">2018-7-27 20:39:15</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8295.JPG" alt="DH Lawrence was an idiot."></video><div class="media-caption entry-meta">DH Lawrence was an idiot.</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-bYRbWGkI.html</link>
             <guid isPermaLink="false">deathmtn-bYRbWGkI</guid>
             <pubDate>Sat, 28 Jul 2018 00:39:15 GMT</pubDate>
@@ -170,7 +292,12 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[Yeah, so DH Lawrence is extremely racist and shallow, but apparently a formal classist? His travelogue is a streak of classic white supremacist douchery.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-lkXaJoVP.html">
+      <time datetime="2018-07-28T00:51:30.682Z">2018-7-27 20:51:30</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8296.JPG" alt="Yeah, so DH Lawrence is extremely racist and shallow, but apparently a formal classist? His travelog"></video><div class="media-caption entry-meta">Yeah, so DH Lawrence is extremely racist and shallow, but apparently a formal classist? His travelogue is a streak of classic white supremacist douchery.</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-lkXaJoVP.html</link>
             <guid isPermaLink="false">deathmtn-lkXaJoVP</guid>
             <pubDate>Sat, 28 Jul 2018 00:51:30 GMT</pubDate>
@@ -178,7 +305,12 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[I'm reading DH Lawrence because he wrote about a train ride we were not able to make while we were in Sardinia, but he's just insufferable. This is how he works: He literally judges people by their appearance, determining their character by how properly masculine or feminine they look to him. He complains about he ways of the country his is visiting that are different from those of his own stupid country. All this in a tone that reads like an especially mean-spirited Niles Crane. Good lord, fuck the classics!]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-QmIlOxpp.html">
+      <time datetime="2018-07-28T01:23:06.249Z">2018-7-27 21:23:06</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8297.JPG" alt="I'm reading DH Lawrence because he wrote about a train ride we were not able to make while we were i"></video><div class="media-caption entry-meta">I'm reading DH Lawrence because he wrote about a train ride we were not able to make while we were in Sardinia, but he's just insufferable. This is how he works: He literally judges people by their appearance, determining their character by how properly masculine or feminine they look to him. He complains about he ways of the country his is visiting that are different from those of his own stupid country. All this in a tone that reads like an especially mean-spirited Niles Crane. Good lord, fuck the classics!</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-QmIlOxpp.html</link>
             <guid isPermaLink="false">deathmtn-QmIlOxpp</guid>
             <pubDate>Sat, 28 Jul 2018 01:23:06 GMT</pubDate>
@@ -186,7 +318,12 @@
         </item>
         <item>
             <title><![CDATA[No title]]></title>
-            <description><![CDATA[OK, I'm ending my hate-reading here. In conclusion, DH Lawrence really needed an ass kicking.]]></description>
+            <description><![CDATA[<li class="pane">
+  <div class="time-stamp entry-meta">
+    <a href="deathmtn-GOMwBnIy.html">
+      <time datetime="2018-07-28T01:38:39.662Z">2018-7-27 21:38:39</time>
+    </a>
+  </div><img src="https://smidgeo.com/notes/deathmtn/media/IMG_8298.JPG" alt="OK, I'm ending my hate-reading here. In conclusion, DH Lawrence really needed an ass kicking."></video><div class="media-caption entry-meta">OK, I'm ending my hate-reading here. In conclusion, DH Lawrence really needed an ass kicking.</div></li>]]></description>
             <link>https://smidgeo.com/notes/deathmtn/deathmtn-GOMwBnIy.html</link>
             <guid isPermaLink="false">deathmtn-GOMwBnIy</guid>
             <pubDate>Sat, 28 Jul 2018 01:38:39 GMT</pubDate>
