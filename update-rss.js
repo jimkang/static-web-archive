@@ -58,16 +58,19 @@ function UpdateRSS({
 
       function addItem(cell) {
         var item = {
-          description: cell.htmlFragment.replace(mediaSrcRegex, ` src="${archiveBaseURL}/media/`),
+          description: cell.htmlFragment.replace(
+            mediaSrcRegex,
+            ` src="${archiveBaseURL}/media/`
+          ),
           url: `${archiveBaseURL}/${cell.id}.html`,
           guid: cell.id,
           date: cell.date
         };
-        if (cell.mediaFilename) {
-          item.enclosure = {
-            url: `${archiveBaseURL}/${mediaDir}/${cell.mediaFilename}`
-          };
-        }
+        // if (cell.mediaFilename) {
+        // item.enclosure = {
+        // url: `${archiveBaseURL}/${mediaDir}/${cell.mediaFilename}`
+        // };
+        // }
         feed.item(item);
       }
     }

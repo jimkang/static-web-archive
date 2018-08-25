@@ -31,7 +31,7 @@ function getFileAbstractforEnv(rootPath = defaultRootPath) {
     );
   } else if (process.env.ABSTRACTION === 'LocalGit') {
     fileAbstraction = LocalGit({
-			rootPath
+      rootPath
     });
   } else {
     fileAbstraction = FSFile({
