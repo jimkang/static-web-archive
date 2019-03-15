@@ -22,6 +22,7 @@ So, in your program, you create an instance of this module like so:
     var staticWebStream = StaticWebArchive({
       title: 'Vape bot archives',
       footerHTML: `<div>Bottom of page</div>`,
+      headerExtraHTML: '<div>Get ready to see some vaping!</div>',
       rootPath: '/usr/share/nginx/html/weblog',
       maxEntriesPerPage: 25
     })

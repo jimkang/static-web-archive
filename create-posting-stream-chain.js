@@ -22,6 +22,7 @@ function createPostingStreamChain({
   title = 'A Static Web Archive',
   homeLink,
   footerHTML = '',
+  headerExtraHTML = '',
   maxEntriesPerPage,
   fileAbstractionType = 'fs',
   rootPath,
@@ -79,10 +80,10 @@ function createPostingStreamChain({
     defaults({ maxEntriesPerPage }, baseOpts)
   );
   var updateIndexHTMLPersistent = UpdateIndexHTMLPersistent(
-    defaults({ title, footerHTML, homeLink }, baseOpts)
+    defaults({ title, footerHTML, homeLink, headerExtraHTML }, baseOpts)
   );
   var addSinglePagePersistent = AddSinglePagePersistent(
-    defaults({ title, footerHTML, homeLink }, baseOpts)
+    defaults({ title, footerHTML, homeLink, headerExtraHTML }, baseOpts)
   );
 
   var bufferToPersistenceStream = createStreamWithTransform(

@@ -10,6 +10,7 @@ function UpdateIndexHTMLPersistent({
   title,
   homeLink,
   footerHTML,
+  headerExtraHTML,
   fileAbstraction
 }) {
   return updateIndexHTMLPersistent;
@@ -25,7 +26,7 @@ function UpdateIndexHTMLPersistent({
     function makeIndexHTMLFromPage(page) {
       return makeIndexHTMLFromPageSpec({
         mostRecentPageIndex: cell.newLastPageIndex,
-        header: template.getHeader(title, homeLink),
+        header: template.getHeader(title, homeLink, headerExtraHTML),
         footer: template.getFooter({
           previousIndexHTML: getPreviousIndexHTML(page),
           footerHTML

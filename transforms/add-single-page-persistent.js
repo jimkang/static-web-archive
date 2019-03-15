@@ -6,6 +6,7 @@ function AddSinglePagePersistent({
   title,
   homeLink,
   footerHTML,
+  headerExtraHTML,
   fileAbstraction,
   skipDelays = false
 }) {
@@ -13,7 +14,7 @@ function AddSinglePagePersistent({
 
   function addSinglePagePersistent(cellToAdd, enc, addCellsDone) {
     var html =
-      template.getHeader(title, homeLink) +
+      template.getHeader(title, homeLink, headerExtraHTML) +
       '\n' +
       cellToAdd.htmlFragment +
       '\n' +

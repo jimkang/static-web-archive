@@ -43,7 +43,8 @@ function chainTest(t) {
     fileAbstractionType: process.env.ABSTRACTION || 'fs',
     rootPath: `${__dirname}/../file-abstractions/test-root`,
     generateRSS: true,
-    archiveBaseURL: 'https://smidgeo.com/notes/deathmtn'
+    archiveBaseURL: 'https://smidgeo.com/notes/deathmtn',
+    headerExtraHTML: '<div>Get ready to read a weblog!</div>'
   });
   postingStreamChain.on('error', logError);
   testPackages.forEach(writeToStream);

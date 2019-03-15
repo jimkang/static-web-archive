@@ -12,7 +12,6 @@ function UpdateRSS({
   rssFilename = 'index.rss',
   archiveBaseURL,
   metaDir = 'meta',
-  mediaDir = 'media',
   fileAbstraction
 }) {
   const lastPagePath = metaDir + '/last-page.txt';
@@ -66,11 +65,6 @@ function UpdateRSS({
           guid: cell.id,
           date: cell.date
         };
-        // if (cell.mediaFilename) {
-        // item.enclosure = {
-        // url: `${archiveBaseURL}/${mediaDir}/${cell.mediaFilename}`
-        // };
-        // }
         feed.item(item);
       }
     }

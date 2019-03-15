@@ -4,6 +4,8 @@ var StreamTestBed = require('through-stream-testbed');
 var UpdateIndexHTMLPersistent = require('../../transforms/update-index-html-persistent');
 var getFileAbstractforEnv = require('../fixtures/get-file-abstraction-for-env');
 
+const testHeaderExtraHTML = '<div>Hey, this is a weblog.</div>';
+
 var cells = [
   {
     newLastPageIndex: 0,
@@ -67,6 +69,7 @@ var updateIndexHTMLPersistent = UpdateIndexHTMLPersistent({
   htmlDir: 'video',
   title: 'update-index-html test page',
   footerHTML: '<footer>the bottom</footer>',
+  headerExtraHTML: testHeaderExtraHTML,
   fileAbstraction: getFileAbstractforEnv(),
   skipDelays: process.env.ABSTRACTION !== 'GitHubFile'
 });
@@ -92,5 +95,13 @@ function checkResults(t, resultCells) {
 
 function checkResult(t, resultCell) {
   t.ok(resultCell.indexesHTML.length > 0, 'There is at least one index html.');
+  t.ok(
+    resultCell.indexesHTML.every(hasCustomHeader),
+    'All index htmls have the custom header.'
+  );
   console.log(resultCell.indexesHTML);
+}
+
+function hasCustomHeader(s) {
+  return s.content.indexOf(testHeaderExtraHTML) !== -1;
 }
