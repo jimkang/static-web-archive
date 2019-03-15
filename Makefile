@@ -1,5 +1,11 @@
 GITDIR=tests/file-abstractions/test-root
 
+test-all-fast: fs-tests local-git-tests
+	node tests/add-cells-to-pages-tests.js
+	node tests/make-index-html-from-page-spec-tests.js
+	node tests/integration/post-through-chain-test.js
+	ABSTRACTION=LocalGit node tests/integration/post-through-chain-test.js
+
 test: fs-tests local-git-tests git-tests
 	node tests/add-cells-to-pages-tests.js
 	node tests/make-index-html-from-page-spec-tests.js

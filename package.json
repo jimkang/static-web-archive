@@ -40,7 +40,6 @@
     "lodash.defaults": "^4.2.0",
     "lodash.omit": "^4.5.0",
     "lodash.pluck": "^3.1.2",
-    "ndjson": "^1.5.0",
     "probable": "^2.1.1",
     "rss": "^1.2.2",
     "standard-bail": "^2.0.1",

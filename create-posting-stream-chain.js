@@ -1,6 +1,3 @@
-/* global process */
-
-var ndjson = require('ndjson');
 var through2 = require('through2');
 var BufferToPersistence = require('./transforms/buffer-to-persistence');
 var addHTMLFragment = require('./transforms/add-html-fragment');
@@ -134,9 +131,7 @@ function createPostingStreamChain({
       addSinglePagePersistentStream,
       updatePagesStream,
       updateIndexHTMLPersistentStream,
-      updateRSSPersistentStream,
-      ndjson.stringify(),
-      process.stdout
+      updateRSSPersistentStream
     ])
   );
 
