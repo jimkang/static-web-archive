@@ -120,7 +120,7 @@ function createPostingStreamChain({
         fileAbstraction: baseOpts.fileAbstraction,
         delay: rssDelay
       }),
-      logError
+      logRSSUpdated
     );
   }
 
@@ -136,6 +136,19 @@ function createPostingStreamChain({
   );
 
   return bufferToPersistenceStream;
+
+  function logRSSUpdated(error) {
+    if (error) {
+      logError(error);
+    } else if (rssFeedOpts.logging !== 'silent') {
+      console.log(
+        'Updated RSS for',
+        config.name,
+        'at',
+        new Date().toISOString()
+      );
+    }
+  }
 }
 
 function pipeEmUp(streams) {
