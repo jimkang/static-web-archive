@@ -6,6 +6,12 @@ var config = require('../../config');
 var fs = require('fs');
 var randomId = require('idmaker').randomId;
 require('longjohn');
+var readline = require('readline');
+
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 var testPackages = [
   {
@@ -36,6 +42,7 @@ var testPackages = [
 ];
 
 test('Should be able to post to stream and get HTML into git', chainTest);
+test('Should be able to update via stream', updateTest);
 
 function chainTest(t) {
   var postingStreamChain = createPostingStreamChain({
@@ -52,6 +59,26 @@ function chainTest(t) {
 
   function writeToStream(package) {
     postingStreamChain.write(package);
+  }
+}
+
+function updateTest(t) {
+  testPackages[0].mediaFilename = 'wily-overhead.png';
+  testPackages[0].caption = 'Now it is Wily!';
+  testPackages[0].buffer = fs.readFileSync(
+    __dirname + '/../fixtures/images/wily-overhead.png'
+  );
+
+  testPackages[2].caption = 'Updated text.';
+
+  rl.question(
+    'Check initial posts, then type "go" (or anything really) when you are ready to test updating them. Then, check the update to make sure posts are updated in-place.\n',
+    continueTest
+  );
+
+  function continueTest() {
+    rl.close();
+    chainTest(t);
   }
 }
 
