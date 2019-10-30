@@ -1,3 +1,5 @@
+var sanitizeHtml = require('sanitize-html');
+
 var titleRefRegex = /_TITLE_REF/g;
 var footerRegex = /_FOOTER_REF/g;
 
@@ -58,9 +60,11 @@ function getFooter({ previousIndexHTML, footerHTML }) {
 function getPreviewTags({ homeLink, previewKeyCell, title, previewURL }) {
   var previewInfo = {
     url: previewURL || homeLink + '/' + previewKeyCell.id + '.html',
-    title,
+    title: sanitizeHtml(title),
     description: previewKeyCell.altText || previewKeyCell.caption || ''
   };
+
+  previewInfo.description = sanitizeHtml(previewInfo.description);
 
   if (previewKeyCell.mediaFilename) {
     const mediaURL = `${homeLink}/media${previewKeyCell.mediaFilename}`;
