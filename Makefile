@@ -17,6 +17,7 @@ clean-fs-test-root:
 	rm -rf tests/file-abstractions/test-root/*
 
 set-up-rss:
+	mkdir -p tests/rss-test-archive-root/rss/
 	cp tests/rss-test-archive-root/rss-to-update.rss tests/rss-test-archive-root/rss/index.rss
 
 fs-tests: clean-fs-test-root set-up-rss
