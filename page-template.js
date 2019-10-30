@@ -69,7 +69,7 @@ function getPreviewTags({ homeLink, previewKeyCell, title, previewURL }) {
   });
 
   if (previewKeyCell.mediaFilename) {
-    const mediaURL = `${homeLink}/media${previewKeyCell.mediaFilename}`;
+    const mediaURL = `${homeLink}/media/${previewKeyCell.mediaFilename}`;
     if (previewKeyCell.isVideo) {
       previewInfo.video = mediaURL;
     } else {
