@@ -29,7 +29,7 @@ fs-tests: clean-fs-test-root set-up-rss
 	node tests/transforms/add-single-page-persistent-tests.js
 	node tests/update-rss-tests.js
 
-local-git-tests: clean-fs-test-root set-up-test-git-dir set-up-rss
+local-git-tests: clean-fs-test-root set-up-rss set-up-test-git-dir
 	ABSTRACTION=LocalGit node tests/file-abstractions/fs-abstraction-tests.js
 	ABSTRACTION=LocalGit node tests/establish-last-page-index-tests.js
 	ABSTRACTION=LocalGit node tests/transforms/buffer-to-persistence-tests.js
@@ -54,6 +54,7 @@ prettier:
 
 set-up-test-git-dir:
 	mkdir -p $(GITDIR)
+	cp -r tests/rss-test-archive-root/rss $(GITDIR)/rss
 	cd $(GITDIR) && \
 	  git init && \
 	  touch git-stub && \
