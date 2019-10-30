@@ -16,7 +16,10 @@ test: fs-tests local-git-tests git-tests
 clean-fs-test-root:
 	rm -rf tests/file-abstractions/test-root/*
 
-fs-tests: clean-fs-test-root
+set-up-rss:
+	cp tests/rss-test-archive-root/rss-to-update.rss tests/rss-test-archive-root/rss/index.rss
+
+fs-tests: clean-fs-test-root set-up-rss
 	node tests/file-abstractions/fs-abstraction-tests.js
 	node tests/establish-last-page-index-tests.js
 	node tests/transforms/buffer-to-persistence-tests.js
@@ -25,7 +28,7 @@ fs-tests: clean-fs-test-root
 	node tests/transforms/add-single-page-persistent-tests.js
 	node tests/update-rss-tests.js
 
-local-git-tests: clean-fs-test-root set-up-test-git-dir
+local-git-tests: clean-fs-test-root set-up-test-git-dir set-up-rss
 	ABSTRACTION=LocalGit node tests/file-abstractions/fs-abstraction-tests.js
 	ABSTRACTION=LocalGit node tests/establish-last-page-index-tests.js
 	ABSTRACTION=LocalGit node tests/transforms/buffer-to-persistence-tests.js
