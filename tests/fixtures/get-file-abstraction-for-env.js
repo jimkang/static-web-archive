@@ -6,7 +6,7 @@ var GitHubFile = require('github-file');
 var cloneDeep = require('lodash.clonedeep');
 var defaults = require('lodash.defaults');
 var encoders = require('../../base-64-encoders');
-var config = require('../../config');
+var config = require('../../test-config');
 var request = require('request');
 const defaultRootPath = `${__dirname}/../file-abstractions/test-root`;
 

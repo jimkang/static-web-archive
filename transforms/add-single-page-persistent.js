@@ -13,22 +13,29 @@ function AddSinglePagePersistent({
   return addSinglePagePersistent;
 
   function addSinglePagePersistent(cellToAdd, enc, addCellsDone) {
+    var filePath = '';
+    if (htmlDir) {
+      filePath = htmlDir + '/';
+    }
+
+    const filename = cellToAdd.id + '.html';
+    filePath += filename;
+
     var html =
-      template.getHeader(title, homeLink, headerExtraHTML) +
+      template.getHeader({
+        title,
+        homeLink,
+        headerExtraHTML,
+        previewKeyCell: cellToAdd
+      }) +
       '\n' +
       cellToAdd.htmlFragment +
       '\n' +
       template.getFooter({ previousIndexHTML: '', footerHTML });
 
-    var filePath = '';
-    if (htmlDir) {
-      filePath = htmlDir + '/';
-    }
-    filePath += cellToAdd.id + '.html';
-
     fileAbstraction.update(
       {
-        filePath: filePath,
+        filePath,
         content: html,
         message: 'static-web-archive posting single entry HTML'
       },

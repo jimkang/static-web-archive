@@ -1,10 +1,26 @@
 var titleRefRegex = /_TITLE_REF/g;
 var footerRegex = /_FOOTER_REF/g;
 
-function getHeader(title, homeLink, headerExtraHTML) {
+function getHeader({
+  title,
+  homeLink = '',
+  headerExtraHTML,
+  previewKeyCell,
+  previewURL
+}) {
   var titleHTML = title;
   if (homeLink) {
     titleHTML = `<a href="${homeLink}">${title}</a>`;
+  }
+
+  var previewTags = '';
+  if (previewKeyCell) {
+    previewTags = getPreviewTags({
+      homeLink,
+      previewKeyCell,
+      title,
+      previewURL
+    });
   }
 
   return `<html>
@@ -13,6 +29,7 @@ function getHeader(title, homeLink, headerExtraHTML) {
     <link rel="stylesheet" href="app.css"></link>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
     <meta charset="utf-8">
+    ${previewTags}
   </head>
   <body>
 
@@ -36,6 +53,36 @@ function getFooter({ previousIndexHTML, footerHTML }) {
 
   </body>
   </html>`.replace(footerRegex, footerHTML);
+}
+
+function getPreviewTags({ homeLink, previewKeyCell, title, previewURL }) {
+  var previewInfo = {
+    url: previewURL || homeLink + '/' + previewKeyCell.id + '.html',
+    title,
+    description: previewKeyCell.altText || previewKeyCell.caption || ''
+  };
+
+  if (previewKeyCell.mediaFilename) {
+    const mediaURL = `${homeLink}/media${previewKeyCell.mediaFilename}`;
+    if (previewKeyCell.isVideo) {
+      previewInfo.video = mediaURL;
+    } else {
+      previewInfo.image = mediaURL;
+    }
+  }
+
+  var mediaPreviewTag = '';
+  if (previewInfo.image) {
+    mediaPreviewTag = `<meta property="og:image" content="${previewInfo.image}">`;
+  } else if (previewInfo.video) {
+    mediaPreviewTag = `<meta property="og:video" content="${previewInfo.video}">`;
+  }
+
+  return `<meta property="og:url" content="${previewInfo.url}"/>
+    <meta property="og:title" content="${previewInfo.title}"/>
+    <meta property="og:description" content="${previewInfo.description}"/>
+    <meta property="og:site_name" content="${title}"/>
+    ${mediaPreviewTag}`;
 }
 
 module.exports = {

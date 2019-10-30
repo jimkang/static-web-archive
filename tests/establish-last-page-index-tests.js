@@ -1,7 +1,7 @@
 /* global process, __dirname */
 
 var test = require('tape');
-var config = require('../config');
+var config = require('../test-config');
 var request = require('request');
 var GitHubFile = require('github-file');
 var FSFile = require('../file-abstractions/fs-file');
