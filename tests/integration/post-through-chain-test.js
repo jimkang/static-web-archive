@@ -2,7 +2,7 @@
 
 var test = require('tape');
 var createPostingStreamChain = require('../../create-posting-stream-chain');
-var config = require('../../config');
+var config = require('../../test-config');
 var fs = require('fs');
 var randomId = require('idmaker').randomId;
 require('longjohn');
