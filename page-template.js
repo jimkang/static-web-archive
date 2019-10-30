@@ -60,11 +60,13 @@ function getFooter({ previousIndexHTML, footerHTML }) {
 function getPreviewTags({ homeLink, previewKeyCell, title, previewURL }) {
   var previewInfo = {
     url: previewURL || homeLink + '/' + previewKeyCell.id + '.html',
-    title: sanitizeHtml(title),
+    title: sanitizeHtml(title, { allowedTags: [] }),
     description: previewKeyCell.altText || previewKeyCell.caption || ''
   };
 
-  previewInfo.description = sanitizeHtml(previewInfo.description);
+  previewInfo.description = sanitizeHtml(previewInfo.description, {
+    allowedTags: []
+  });
 
   if (previewKeyCell.mediaFilename) {
     const mediaURL = `${homeLink}/media${previewKeyCell.mediaFilename}`;
