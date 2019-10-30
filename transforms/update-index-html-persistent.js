@@ -2,8 +2,9 @@ var callNextTick = require('call-next-tick');
 var waterfall = require('async-waterfall');
 var queue = require('d3-queue').queue;
 var makeIndexHTMLFromPageSpec = require('../make-index-html-from-page-spec');
-var sb = require('standard-bail')();
 var template = require('../page-template');
+
+var sb = require('standard-bail')();
 
 function UpdateIndexHTMLPersistent({
   htmlDir,
@@ -26,7 +27,13 @@ function UpdateIndexHTMLPersistent({
     function makeIndexHTMLFromPage(page) {
       return makeIndexHTMLFromPageSpec({
         mostRecentPageIndex: cell.newLastPageIndex,
-        header: template.getHeader(title, homeLink, headerExtraHTML),
+        header: template.getHeader({
+          title,
+          homeLink,
+          headerExtraHTML,
+          previewKeyCell: cell,
+          previewURL: homeLink
+        }),
         footer: template.getFooter({
           previousIndexHTML: getPreviousIndexHTML(page),
           footerHTML

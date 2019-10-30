@@ -44,7 +44,8 @@ function chainTest(t) {
     rootPath: `${__dirname}/../file-abstractions/test-root`,
     generateRSS: true,
     archiveBaseURL: 'https://smidgeo.com/notes/deathmtn',
-    headerExtraHTML: '<div>Get ready to read a weblog!</div>'
+    headerExtraHTML: '<div>Get ready to read a weblog!</div>',
+    homeLink: 'https://localhost'
   });
   postingStreamChain.on('error', logError);
   testPackages.forEach(writeToStream);
