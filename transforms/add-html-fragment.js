@@ -8,7 +8,7 @@ var getHTMLFragmentFromCell = require('@jimkang/get-html-fragment-from-cell');
 // optional: mediaFilename
 function addHTMLFragment(cell, enc, done) {
   // TODO: Use var for media dir in fragment below.
-  cell.htmlFragment = getHTMLFragmentFromCell('media', cell);
+  cell.htmlFragment = getHTMLFragmentFromCell({ mediaDir: 'media' }, cell);
   this.push(cell);
   callNextTick(done);
 }
