@@ -12,6 +12,7 @@ function UpdateIndexHTMLPersistent({
   homeLink,
   footerHTML,
   headerExtraHTML,
+  headExtraHTML,
   fileAbstraction
 }) {
   return updateIndexHTMLPersistent;
@@ -31,6 +32,7 @@ function UpdateIndexHTMLPersistent({
           title,
           homeLink,
           headerExtraHTML,
+          headExtraHTML,
           previewKeyCell: cell,
           previewURL: homeLink
         }),

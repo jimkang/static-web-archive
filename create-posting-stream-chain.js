@@ -20,6 +20,7 @@ function createPostingStreamChain({
   homeLink,
   footerHTML = '',
   headerExtraHTML = '',
+  headExtraHTML = '',
   maxEntriesPerPage,
   fileAbstractionType = 'fs',
   rootPath,
@@ -77,10 +78,16 @@ function createPostingStreamChain({
     defaults({ maxEntriesPerPage }, baseOpts)
   );
   var updateIndexHTMLPersistent = UpdateIndexHTMLPersistent(
-    defaults({ title, footerHTML, homeLink, headerExtraHTML }, baseOpts)
+    defaults(
+      { title, footerHTML, homeLink, headerExtraHTML, headExtraHTML },
+      baseOpts
+    )
   );
   var addSinglePagePersistent = AddSinglePagePersistent(
-    defaults({ title, footerHTML, homeLink, headerExtraHTML }, baseOpts)
+    defaults(
+      { title, footerHTML, homeLink, headerExtraHTML, headExtraHTML },
+      baseOpts
+    )
   );
 
   var bufferToPersistenceStream = createStreamWithTransform(

@@ -6,7 +6,8 @@ var footerRegex = /_FOOTER_REF/g;
 function getHeader({
   title,
   homeLink = '',
-  headerExtraHTML,
+  headerExtraHTML = '',
+  headExtraHTML = '',
   previewKeyCell,
   previewURL
 }) {
@@ -32,6 +33,7 @@ function getHeader({
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
     <meta charset="utf-8">
     ${previewTags}
+    ${headExtraHTML}
   </head>
   <body>
 

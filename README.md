@@ -23,6 +23,7 @@ So, in your program, you create an instance of this module like so:
       title: 'Vape bot archives',
       footerHTML: `<div>Bottom of page</div>`,
       headerExtraHTML: '<div>Get ready to see some vaping!</div>',
+      headExtraHTML: '<link rel="whatever">https://a.thing</link>',
       rootPath: '/usr/share/nginx/html/weblog',
       maxEntriesPerPage: 25
     })

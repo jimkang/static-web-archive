@@ -7,6 +7,7 @@ function AddSinglePagePersistent({
   homeLink,
   footerHTML,
   headerExtraHTML,
+  headExtraHTML,
   fileAbstraction,
   skipDelays = false
 }) {
@@ -26,6 +27,7 @@ function AddSinglePagePersistent({
         title,
         homeLink,
         headerExtraHTML,
+        headExtraHTML,
         previewKeyCell: cellToAdd
       }) +
       '\n' +
