@@ -21,7 +21,6 @@
     "assert-no-error": "^1.0.0",
     "eslint": "^6.8.0",
     "longjohn": "^0.2.12",
-    "request": "^2.87.0",
     "tape": "^4.6.0",
     "through-stream-testbed": "^1.0.0"
   },
@@ -43,6 +42,7 @@
     "lodash.omit": "^4.5.0",
     "lodash.pluck": "^3.1.2",
     "probable": "^2.1.1",
+    "request": "^2.88.2",
     "rss": "^1.2.2",
     "sanitize-html": "^1.20.1",
     "standard-bail": "^2.0.1",
