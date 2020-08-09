@@ -1,15 +1,9 @@
-/* global __dirname, process */
+/* global __dirname */
 
 var test = require('tape');
 var fs = require('fs');
 var StreamTestBed = require('through-stream-testbed');
-var config = require('../../test-config');
-var request = require('request');
 var FSFile = require('../../file-abstractions/fs-file');
-var GitHubFile = require('github-file');
-var cloneDeep = require('lodash.clonedeep');
-var defaults = require('lodash.defaults');
-var encoders = require('../../base-64-encoders');
 
 // This is a transform function that gets a video buffer, given an object containing a video url.
 var BufferToPersistence = require('../../transforms/buffer-to-persistence');
@@ -51,48 +45,16 @@ var cells = [
 ];
 
 var bufferToPersistence;
-
-if (process.env.ABSTRACTION === 'GitHubFile') {
-  var gitFileOpts = {
-    branch: 'master',
-    gitRepoOwner: config.githubTest.gitRepoOwner,
-    gitToken: config.githubTest.gitToken,
-    repo: config.githubTest.repo,
-    request,
-    shouldSetUserAgent: true
-  };
-
-  var fileAbstractionForBuffers = GitHubFile(
-    defaults(cloneDeep(gitFileOpts), {
-      encodeInBase64: encoders.encodeInBase64,
-      decodeFromBase64: encoders.decodeFromBase64
-    })
-  );
-  var fileAbstractionForText = GitHubFile(
-    defaults(cloneDeep(gitFileOpts), {
-      encodeInBase64: encoders.encodeTextInBase64,
-      decodeFromBase64: encoders.decodeFromBase64ToText
-    })
-  );
-
-  bufferToPersistence = BufferToPersistence({
-    fileAbstractionForBuffers,
-    fileAbstractionForText,
-    mediaDir: 'video/files',
-    metaDir: 'video/meta'
-  });
-} else {
-  var fileAbstraction = FSFile({
-    rootPath: `${__dirname}/../file-abstractions/test-root`
-  });
-  bufferToPersistence = BufferToPersistence({
-    fileAbstractionForText: fileAbstraction,
-    fileAbstractionForBuffers: fileAbstraction,
-    mediaDir: 'video/files',
-    metaDir: 'video/meta',
-    skipDelays: true
-  });
-}
+var fileAbstraction = FSFile({
+  rootPath: `${__dirname}/../file-abstractions/test-root`
+});
+bufferToPersistence = BufferToPersistence({
+  fileAbstractionForText: fileAbstraction,
+  fileAbstractionForBuffers: fileAbstraction,
+  mediaDir: 'video/files',
+  metaDir: 'video/meta',
+  skipDelays: true
+});
 
 test(
   'Test bufferToPersistence',
