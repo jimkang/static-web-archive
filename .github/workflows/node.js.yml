@@ -27,3 +27,5 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: make test
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.gpm_token}}
