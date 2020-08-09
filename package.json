@@ -33,7 +33,7 @@
     "d3-queue": "^3.0.5",
     "fs-extra": "^6.0.1",
     "idmaker": "^0.1.1",
-    "isomorphic-git": "^0.12.3",
+    "isomorphic-git": "^1.7.4",
     "lodash.compact": "^3.0.1",
     "lodash.curry": "^4.1.1",
     "lodash.defaults": "^4.2.0",
