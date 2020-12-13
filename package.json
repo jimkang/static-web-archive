@@ -1,6 +1,6 @@
 {
   "name": "@jimkang/static-web-archive",
-  "version": "5.0.1",
+  "version": "6.0.0",
   "description": "A module that maintains a static web archive that you can add to piece by piece. For image bots in particular.",
   "main": "create-posting-stream-chain.js",
   "scripts": {
