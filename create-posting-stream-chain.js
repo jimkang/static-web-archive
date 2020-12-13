@@ -22,12 +22,13 @@ function createPostingStreamChain({
   rootPath,
   generateRSS = true,
   rssFeedOpts = {},
-  archiveBaseURL = '/'
+  archiveBaseURL = '/',
+  skipDelays = true
 }) {
   var baseOpts = {
     mediaDir: 'media',
     metaDir: 'meta',
-    skipDelays: true
+    skipDelays
   };
   let fileAbstraction;
   if (fileAbstractionType === 'LocalGit') {
@@ -86,11 +87,6 @@ function createPostingStreamChain({
 
   if (generateRSS) {
     let rssDelay = 0;
-    if (fileAbstractionType === 'GitHubFile') {
-      // I know it's more complex than this, but the GitHub API
-      // kinda sucks.
-      rssDelay = 5000;
-    }
     updateRSSPersistentStream = createStreamWithTransform(
       UpdateRSSPersistent({
         rssFeedOpts,

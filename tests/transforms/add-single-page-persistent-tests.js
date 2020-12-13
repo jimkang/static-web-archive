@@ -1,4 +1,3 @@
-/* global process */
 var test = require('tape');
 var StreamTestBed = require('through-stream-testbed');
 var AddSinglePagePersistent = require('../../transforms/add-single-page-persistent');
@@ -15,8 +14,7 @@ var addSinglePagePersistent = AddSinglePagePersistent({
   htmlDir: 'video',
   title: 'Single page test',
   footerHTML: '<footer>Single page footer</footer>',
-  fileAbstraction: getFileAbstractforEnv(),
-  skipDelays: process.env.ABSTRACTION !== 'GitHubFile'
+  fileAbstraction: getFileAbstractforEnv()
 });
 
 test(

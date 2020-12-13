@@ -52,8 +52,7 @@ bufferToPersistence = BufferToPersistence({
   fileAbstractionForText: fileAbstraction,
   fileAbstractionForBuffers: fileAbstraction,
   mediaDir: 'video/files',
-  metaDir: 'video/meta',
-  skipDelays: true
+  metaDir: 'video/meta'
 });
 
 test(

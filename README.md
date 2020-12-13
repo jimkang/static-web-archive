@@ -69,21 +69,6 @@ After the above runs, in the rootDir, there will be:
 
 You can also look at `tests/integration/post-through-chain-test.js` to get an idea.
 
-You can alternately persist to a GitHub repository instead of the local filesystem, but constructing the object like so:
-
-    var staticWebStream = StaticWebArchive({
-      title: 'Vape bot archives',
-      footerHTML: `<div>Bottom of page</div>`,
-      rootPath: '/usr/share/nginx/html/weblog',
-      maxEntriesPerPage: 25,
-      fileAbstractionType: 'GitHubFile',
-      config: {
-        gitRepoOwner: 'jimkang',
-        gitToken: 'Your GitHub token',
-        repo: 'the-archive-repo'
-      }
-    })
-
 The other alternative is the `fileAbstractionType` `LocalGit`. This will make a commit for each file you update. It is far more reliable than `GitHubFile`. The thing you have to do, however, is set up `rootPath` as a git repo. e.g. `git init` etc.
 
 RSS
@@ -95,23 +80,14 @@ If you want to generate an RSS feed for the lastest page of cells, you can provi
 - `rssFeedOpts`: Opts to pass to the [rss module](https://github.com/dylang/node-rss#feedoptions) constructor. If you don't set anything here, it'll just set the title to the title of the archive.
 - `archiveBaseURL`: This will be used to create links to your archive in the RSS entries.
 
-Note: I have not actually gotten RSS to work when using 'GitHubFile' as the fileAbstractionType. Definitely works when you default the fileAbstractionType to the local FS.
-
 Tests
 -----
 
 Create a `config.js` file in the project root that looks like this:
 
     module.exports = {
-      rootPath: 'tests/test-archive-root',
-      githubTest: {
-        gitRepoOwner: '<Your GitHub username>',
-        gitToken: '<A GitHub token from your GitHub settings>',
-        repo: 'test-repo-name'
-      }
+      rootPath: 'tests/test-archive-root'
     };
-
-You can put dummy values in for the GitHub properties if you'd like to skip the GitHub tests. To set them up for real, create an empty repo for the test commits to go to. Then, get a token via GitHub Settings | Developer Settings | Personal access tokens. Create a token that has **repo** scope.
 
 Set up a git test directory with `make set-up-test-git-dir`.
 Run tests with `make test`.

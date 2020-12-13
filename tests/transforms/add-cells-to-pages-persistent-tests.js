@@ -1,4 +1,3 @@
-/* global process */
 var test = require('tape');
 var StreamTestBed = require('through-stream-testbed');
 var AddCellsToPagesPersistent = require('../../transforms/add-cells-to-pages-persistent');
@@ -20,8 +19,7 @@ function createCell() {
 
 var addCellsToPagesPersistent = AddCellsToPagesPersistent({
   metaDir: 'video/meta',
-  fileAbstraction: getFileAbstractforEnv(),
-  skipDelays: process.env.ABSTRACTION !== 'GitHubFile'
+  fileAbstraction: getFileAbstractforEnv()
 });
 
 test(

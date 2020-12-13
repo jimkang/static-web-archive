@@ -1,4 +1,3 @@
-/* global process */
 var test = require('tape');
 var StreamTestBed = require('through-stream-testbed');
 var UpdateIndexHTMLPersistent = require('../../transforms/update-index-html-persistent');
@@ -77,7 +76,6 @@ var updateIndexHTMLPersistent = UpdateIndexHTMLPersistent({
   footerHTML: '<footer>the bottom</footer>',
   headerExtraHTML: testHeaderExtraHTML,
   fileAbstraction: getFileAbstractforEnv(),
-  skipDelays: process.env.ABSTRACTION !== 'GitHubFile',
   homeLink: 'https://localhost'
 });
 
