@@ -25,8 +25,8 @@ function AddCellsToPages({ maxEntriesPerPage = 10 }) {
     }
 
     return {
-      newLastPageIndex: newLastPageIndex,
-      updatedPages: updatedPages
+      newLastPageIndex,
+      updatedPages
     };
   }
 }

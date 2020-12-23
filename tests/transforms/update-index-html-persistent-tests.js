@@ -13,16 +13,18 @@ var cells = [
         index: 0,
         cells: [
           {
+            id: 'index-cell-a',
             date: '2017-04-18T13:34:01.000Z',
             caption: 'Hey',
             htmlFragment:
-              "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:34:01.000Z'</div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/34U_5EzYg4Bvy88n.mp4'></video>\n  <div class='media-caption entry-meta'></div>\n</li>"
+              "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:34:01.000Z'></div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/34U_5EzYg4Bvy88n.mp4'></video>\n  <div class='media-caption entry-meta'></div>\n</li>"
           },
           {
+            id: 'index-cell-x',
             date: '22017-04-18T13:42:24.000Z',
             caption: 'Yo',
             htmlFragment:
-              "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:42:24.000Z'</div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/QBytlk6nvVUhhrT1.mp4'></video>\n  <div class='media-caption entry-meta'>Short protestor</div>\n</li>"
+              "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:42:24.000Z'></div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/QBytlk6nvVUhhrT1.mp4'></video>\n  <div class='media-caption entry-meta'>Short protestor</div>\n</li>"
           }
         ]
       }
@@ -36,10 +38,11 @@ var cells = [
         index: 1,
         cells: [
           {
+            id: 'index-cell-d',
             date: '2017-04-18T21:33:38.000Z',
             caption: 'Hey',
             htmlFragment:
-              '<li class="pane">\n  <div class="time-stamp entry-meta"><time datetime="2017-04-18T21:33:38.000Z"</div>\n  <video controls loop="true" preload="metadata" src="../testapp/videos/ik17VrjkklDF-Q19.mp4"></video>\n  <div class="media-caption entry-meta">Christmas in April</div>\n</li>'
+              '<li class="pane">\n  <div class="time-stamp entry-meta"><time datetime="2017-04-18T21:33:38.000Z"></div>\n  <video controls loop="true" preload="metadata" src="../testapp/videos/ik17VrjkklDF-Q19.mp4"></video>\n  <div class="media-caption entry-meta">Christmas in April</div>\n</li>'
           }
         ]
       },
@@ -47,22 +50,25 @@ var cells = [
         index: 0,
         cells: [
           {
+            id: 'index-cell-c',
             date: '2017-04-18T13:26:20.000Z',
             caption: 'Hey',
             htmlFragment:
-              "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:26:20.000Z'</div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/undefined'></video>\n  <div class='media-caption entry-meta'>Not how mashups are made, guy.</div>\n</li>"
+              "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:26:20.000Z'></div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/undefined'></video>\n  <div class='media-caption entry-meta'>Not how mashups are made, guy.</div>\n</li>"
           },
           {
+            id: 'index-cell-a',
             date: '2017-04-18T13:34:01.000Z',
             caption: 'Hey',
             htmlFragment:
-              "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:34:01.000Z'</div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/34U_5EzYg4Bvy88n.mp4'></video>\n  <div class='media-caption entry-meta'></div>\n</li>"
+              "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:34:01.000Z'></div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/34U_5EzYg4Bvy88n.mp4'></video>\n  <div class='media-caption entry-meta'></div>\n</li>"
           },
           {
+            id: 'index-cell-b',
             date: '2017-04-18T13:42:24.000Z',
             caption: 'Hey',
             htmlFragment:
-              "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:42:24.000Z'</div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/QBytlk6nvVUhhrT1.mp4'></video>\n  <div class='media-caption entry-meta'>Short protestor</div>\n</li>"
+              "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:42:24.000Z'></div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/QBytlk6nvVUhhrT1.mp4'></video>\n  <div class='media-caption entry-meta'>Short protestor</div>\n</li>"
           }
         ]
       }
@@ -76,7 +82,14 @@ var updateIndexHTMLPersistent = UpdateIndexHTMLPersistent({
   footerHTML: '<footer>the bottom</footer>',
   headerExtraHTML: testHeaderExtraHTML,
   fileAbstraction: getFileAbstractforEnv(),
-  homeLink: 'https://localhost'
+  homeLink: 'https://localhost',
+  modFragmentFn({ cell, fragment }) {
+    const lastLiPos = fragment.lastIndexOf('</li>');
+    return (
+      fragment.slice(0, lastLiPos) +
+      `<a href="https://smidgeo.com/thing/${cell.id}.html">Extra link on index page</a> </li>`
+    );
+  }
 });
 
 test(

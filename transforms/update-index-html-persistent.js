@@ -13,7 +13,8 @@ function UpdateIndexHTMLPersistent({
   footerHTML,
   headerExtraHTML,
   headExtraHTML,
-  fileAbstraction
+  fileAbstraction,
+  modFragmentFn // ({ cell, fragment }) => string
 }) {
   return updateIndexHTMLPersistent;
 
@@ -40,7 +41,8 @@ function UpdateIndexHTMLPersistent({
           previousIndexHTML: getPreviousIndexHTML(page),
           footerHTML
         }),
-        pageSpec: page
+        pageSpec: page,
+        modFragmentFn
       });
     }
 
@@ -60,7 +62,7 @@ function UpdateIndexHTMLPersistent({
 
         fileAbstraction.update(
           {
-            filePath: filePath,
+            filePath,
             content: htmlPackage.content,
             message: 'static-web-archive posting updating index HTML'
           },

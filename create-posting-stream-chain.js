@@ -24,7 +24,8 @@ function createPostingStreamChain({
   rssFeedOpts = {},
   archiveBaseURL = '/',
   skipDelays = true,
-  modSingleEntryPageFragmentFn
+  modSingleEntryPageFragmentFn,
+  modIndexPageFragmentFn
 }) {
   var baseOpts = {
     mediaDir: 'media',
@@ -52,7 +53,14 @@ function createPostingStreamChain({
   );
   var updateIndexHTMLPersistent = UpdateIndexHTMLPersistent(
     defaults(
-      { title, footerHTML, homeLink, headerExtraHTML, headExtraHTML },
+      {
+        title,
+        footerHTML,
+        homeLink,
+        headerExtraHTML,
+        headExtraHTML,
+        modFragmentFn: modIndexPageFragmentFn
+      },
       baseOpts
     )
   );

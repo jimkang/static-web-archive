@@ -90,6 +90,16 @@ If you want to modify the entries that go on a single-entry page (e.g. add extra
 <a href="https://smidgeo.com/thing/${cell.id}.html">Extra link</a>`;
     }
 
+To modify entries for index pages, provide n `modIndexPageFragmentFn` like this:
+
+    modIndexPageFragmentFn({ cell, fragment }) {
+      const lastLiPos = fragment.lastIndexOf('</li>');
+      return (
+        fragment.slice(0, lastLiPos) +
+        `<a href="https://smidgeo.com/thing/${cell.id}.html">Extra link on index page</a> </li>`
+      );
+    }
+
 Tests
 -----
 

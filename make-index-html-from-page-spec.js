@@ -4,7 +4,8 @@ function makeIndexHTMLFromPageSpec({
   mostRecentPageIndex,
   header,
   footer,
-  pageSpec
+  pageSpec,
+  modFragmentFn // ({ cell, fragment }) => string
 }) {
   var filename = pageSpec.index + '.html';
   if (pageSpec.index === mostRecentPageIndex) {
@@ -12,17 +13,19 @@ function makeIndexHTMLFromPageSpec({
   }
 
   var sortedCells = pageSpec.cells.sort(compareCellsByDateDesc);
+  var cellFragments = pluck(sortedCells, 'htmlFragment');
+  if (modFragmentFn) {
+    cellFragments = sortedCells.map(modifyFragment);
+  }
 
   return {
     filename,
-    content:
-      header +
-      '\n' +
-      pluck(sortedCells, 'htmlFragment').join('\n') +
-      '\n' +
-      footer +
-      '\n'
+    content: header + '\n' + cellFragments.join('\n') + '\n' + footer + '\n'
   };
+
+  function modifyFragment(cell) {
+    return modFragmentFn({ cell, fragment: cell.htmlFragment });
+  }
 }
 
 function compareCellsByDateDesc(a, b) {
