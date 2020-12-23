@@ -80,6 +80,16 @@ If you want to generate an RSS feed for the lastest page of cells, you can provi
 - `rssFeedOpts`: Opts to pass to the [rss module](https://github.com/dylang/node-rss#feedoptions) constructor. If you don't set anything here, it'll just set the title to the title of the archive.
 - `archiveBaseURL`: This will be used to create links to your archive in the RSS entries.
 
+Modifying entries
+-----
+
+If you want to modify the entries that go on a single-entry page (e.g. add extra tags, content, etc.), pass a function in the `modSingleEntryPageFragmentFn' opt that takes a `cell` containing information about the entry and an `innerFragment` that is a string that is the HTML that static-web-archive planned to generate for the entry. Your function should return a string that is the modified entry HTML. e.g.:
+
+    modSingleEntryPageFragmentFn({ cell, innerFragment }) {
+      return `${innerFragment}
+<a href="https://smidgeo.com/thing/${cell.id}.html">Extra link</a>`;
+    }
+
 Tests
 -----
 

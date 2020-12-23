@@ -23,7 +23,8 @@ function createPostingStreamChain({
   generateRSS = true,
   rssFeedOpts = {},
   archiveBaseURL = '/',
-  skipDelays = true
+  skipDelays = true,
+  modSingleEntryPageFragmentFn
 }) {
   var baseOpts = {
     mediaDir: 'media',
@@ -57,7 +58,14 @@ function createPostingStreamChain({
   );
   var addSinglePagePersistent = AddSinglePagePersistent(
     defaults(
-      { title, footerHTML, homeLink, headerExtraHTML, headExtraHTML },
+      {
+        title,
+        footerHTML,
+        homeLink,
+        headerExtraHTML,
+        headExtraHTML,
+        modFragmentFn: modSingleEntryPageFragmentFn
+      },
       baseOpts
     )
   );

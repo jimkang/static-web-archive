@@ -45,7 +45,11 @@ function chainTest(t) {
     generateRSS: true,
     archiveBaseURL: 'https://smidgeo.com/notes/deathmtn',
     headerExtraHTML: '<div>Get ready to read a weblog!</div>',
-    homeLink: 'https://localhost'
+    homeLink: 'https://localhost',
+    modSingleEntryPageFragmentFn({ cell, innerFragment }) {
+      return `${innerFragment}
+<a href="https://smidgeo.com/thing/${cell.id}.html">Extra link</a>`;
+    }
   });
   postingStreamChain.on('error', logError);
   testPackages.forEach(writeToStream);
