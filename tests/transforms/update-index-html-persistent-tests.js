@@ -4,6 +4,8 @@ var UpdateIndexHTMLPersistent = require('../../transforms/update-index-html-pers
 var getFileAbstractforEnv = require('../fixtures/get-file-abstraction-for-env');
 
 const testHeaderExtraHTML = '<div>Hey, this is a weblog.</div>';
+const testIndexOnlyHeaderExtraHTML =
+  '<div>Hey, this only goes on the index page.</div>';
 
 var cells = [
   {
@@ -81,6 +83,7 @@ var updateIndexHTMLPersistent = UpdateIndexHTMLPersistent({
   title: 'update-index-html test page',
   footerHTML: '<footer>the bottom</footer>',
   headerExtraHTML: testHeaderExtraHTML,
+  indexOnlyExtraHTML: testIndexOnlyHeaderExtraHTML,
   fileAbstraction: getFileAbstractforEnv(),
   homeLink: 'https://localhost',
   modFragmentFn({ cell, fragment }) {

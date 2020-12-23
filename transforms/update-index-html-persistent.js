@@ -12,6 +12,7 @@ function UpdateIndexHTMLPersistent({
   homeLink,
   footerHTML,
   headerExtraHTML,
+  indexOnlyExtraHTML,
   headExtraHTML,
   fileAbstraction,
   modFragmentFn // ({ cell, fragment }) => string
@@ -33,6 +34,7 @@ function UpdateIndexHTMLPersistent({
           title,
           homeLink,
           headerExtraHTML,
+          indexOnlyExtraHTML,
           headExtraHTML,
           previewKeyCell: cell,
           previewURL: homeLink

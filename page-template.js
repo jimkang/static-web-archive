@@ -7,6 +7,7 @@ function getHeader({
   title,
   homeLink = '',
   headerExtraHTML = '',
+  indexOnlyExtraHTML = '',
   headExtraHTML = '',
   previewKeyCell,
   previewURL
@@ -42,6 +43,7 @@ function getHeader({
 
   <h1>_TITLE_REF</h1>
   ${headerExtraHTML}
+  ${indexOnlyExtraHTML}
 
   <section class="media">
     <ul class="media-list">`.replace(titleRefRegex, titleHTML);

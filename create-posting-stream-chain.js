@@ -17,6 +17,7 @@ function createPostingStreamChain({
   footerHTML = '',
   headerExtraHTML = '',
   headExtraHTML = '',
+  indexOnlyExtraHTML = '',
   maxEntriesPerPage,
   fileAbstractionType = 'fs',
   rootPath,
@@ -58,6 +59,7 @@ function createPostingStreamChain({
         footerHTML,
         homeLink,
         headerExtraHTML,
+        indexOnlyExtraHTML,
         headExtraHTML,
         modFragmentFn: modIndexPageFragmentFn
       },
