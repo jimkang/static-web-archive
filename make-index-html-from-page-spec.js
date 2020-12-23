@@ -14,7 +14,7 @@ function makeIndexHTMLFromPageSpec({
   var sortedCells = pageSpec.cells.sort(compareCellsByDateDesc);
 
   return {
-    filename: filename,
+    filename,
     content:
       header +
       '\n' +
