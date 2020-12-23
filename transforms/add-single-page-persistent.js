@@ -8,6 +8,7 @@ function AddSinglePagePersistent({
   footerHTML,
   headerExtraHTML,
   headExtraHTML,
+  modFragmentFn, // ({ cell, innerFragment }) => string
   fileAbstraction,
   skipDelays = false
 }) {
@@ -22,6 +23,14 @@ function AddSinglePagePersistent({
     const filename = cellToAdd.id + '.html';
     filePath += filename;
 
+    var fragmentFromCell = cellToAdd.htmlFragment;
+    if (modFragmentFn) {
+      fragmentFromCell = modFragmentFn({
+        cell: cellToAdd,
+        innerFragment: fragmentFromCell
+      });
+    }
+
     var html =
       template.getHeader({
         title,
@@ -31,7 +40,7 @@ function AddSinglePagePersistent({
         previewKeyCell: cellToAdd
       }) +
       '\n' +
-      cellToAdd.htmlFragment +
+      fragmentFromCell +
       '\n' +
       template.getFooter({ previousIndexHTML: '', footerHTML });
 

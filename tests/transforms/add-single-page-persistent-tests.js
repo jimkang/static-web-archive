@@ -14,6 +14,10 @@ var addSinglePagePersistent = AddSinglePagePersistent({
   htmlDir: 'video',
   title: 'Single page test',
   footerHTML: '<footer>Single page footer</footer>',
+  modFragmentFn({ cell, innerFragment }) {
+    return `${innerFragment}
+<a href="https://smidgeo.com/thing/${cell.id}.html">Extra link</a>`;
+  },
   fileAbstraction: getFileAbstractforEnv()
 });
 
