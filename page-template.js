@@ -76,6 +76,8 @@ function getPreviewTags({ homeLink, previewKeyCell, title, previewURL }) {
     const mediaURL = `${homeLink}/media/${previewKeyCell.mediaFilename}`;
     if (previewKeyCell.isVideo) {
       previewInfo.video = mediaURL;
+    } else if (previewKeyCell.isAudio) {
+      previewInfo.audio = mediaURL;
     } else {
       previewInfo.image = mediaURL;
     }
@@ -86,6 +88,8 @@ function getPreviewTags({ homeLink, previewKeyCell, title, previewURL }) {
     mediaPreviewTag = `<meta property="og:image" content="${previewInfo.image}">`;
   } else if (previewInfo.video) {
     mediaPreviewTag = `<meta property="og:video" content="${previewInfo.video}">`;
+  } else if (previewInfo.audio) {
+    mediaPreviewTag = `<meta property="og:audio" content="${previewInfo.audio}">`;
   }
 
   return `<meta property="og:url" content="${previewInfo.url}"/>

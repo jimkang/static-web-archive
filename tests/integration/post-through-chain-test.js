@@ -32,6 +32,14 @@ var testPackages = [
     id: 'test-c-' + randomId(4),
     date: new Date().toISOString(),
     caption: 'Just text.'
+  },
+  {
+    id: 'test-d-' + randomId(4),
+    date: new Date().toISOString(),
+    isAudio: true,
+    mediaFilename: 'Minotaur02.ogg',
+    caption: 'The Minotaur.',
+    buffer: fs.readFileSync(__dirname + '/../fixtures/audio/Minotaur02.ogg')
   }
 ];
 
