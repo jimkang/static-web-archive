@@ -19,13 +19,13 @@
   "homepage": "https://github.com/jimkang/static-web-archive",
   "devDependencies": {
     "assert-no-error": "^1.0.0",
-    "eslint": "^7.6.0",
+    "eslint": "^7.31.0",
     "longjohn": "^0.2.12",
     "tape": "^4.13.3",
     "through-stream-testbed": "^1.0.0"
   },
   "dependencies": {
-    "@jimkang/get-html-fragment-from-cell": "^2.3.1",
+    "@jimkang/get-html-fragment-from-cell": "^2.3.2",
     "async-waterfall": "^0.1.5",
     "await-to-js": "^2.1.1",
     "call-next-tick": "^2.0.1",
@@ -41,7 +41,7 @@
     "lodash.pluck": "^3.1.2",
     "probable": "^2.1.4",
     "rss": "^1.2.2",
-    "sanitize-html": "^1.27.2",
+    "sanitize-html": "^2.4.0",
     "standard-bail": "^2.0.1",
     "through2": "^2.0.5"
   }

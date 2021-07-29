@@ -26,19 +26,21 @@ function createPostingStreamChain({
   archiveBaseURL = '/',
   skipDelays = true,
   modSingleEntryPageFragmentFn,
-  modIndexPageFragmentFn
+  modIndexPageFragmentFn,
+  mediaDir,
+  metaDir,
 }) {
   var baseOpts = {
-    mediaDir: 'media',
-    metaDir: 'meta',
-    skipDelays
+    mediaDir: mediaDir || 'media',
+    metaDir: metaDir || 'meta',
+    skipDelays,
   };
   let fileAbstraction;
   if (fileAbstractionType === 'LocalGit') {
     fileAbstraction = LocalGit({ rootPath });
   } else {
     fileAbstraction = FSFile({
-      rootPath
+      rootPath,
     });
   }
   baseOpts.fileAbstraction = fileAbstraction;
@@ -61,7 +63,7 @@ function createPostingStreamChain({
         headerExtraHTML,
         indexOnlyExtraHTML,
         headExtraHTML,
-        modFragmentFn: modIndexPageFragmentFn
+        modFragmentFn: modIndexPageFragmentFn,
       },
       baseOpts
     )
@@ -74,7 +76,7 @@ function createPostingStreamChain({
         homeLink,
         headerExtraHTML,
         headExtraHTML,
-        modFragmentFn: modSingleEntryPageFragmentFn
+        modFragmentFn: modSingleEntryPageFragmentFn,
       },
       baseOpts
     )
@@ -110,7 +112,7 @@ function createPostingStreamChain({
         rssFeedOpts,
         archiveBaseURL,
         fileAbstraction: baseOpts.fileAbstraction,
-        delay: rssDelay
+        delay: rssDelay,
       }),
       logRSSUpdated
     );
@@ -123,7 +125,7 @@ function createPostingStreamChain({
       addSinglePagePersistentStream,
       updatePagesStream,
       updateIndexHTMLPersistentStream,
-      updateRSSPersistentStream
+      updateRSSPersistentStream,
     ])
   );
 
