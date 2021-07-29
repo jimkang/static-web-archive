@@ -1,6 +1,6 @@
 var through2 = require('through2');
 var BufferToPersistence = require('./transforms/buffer-to-persistence');
-var addHTMLFragment = require('./transforms/add-html-fragment');
+var AddHTMLFragment = require('./transforms/add-html-fragment');
 var AddCellsToPagesPersistent = require('./transforms/add-cells-to-pages-persistent');
 var UpdateIndexHTMLPersistent = require('./transforms/update-index-html-persistent');
 var AddSinglePagePersistent = require('./transforms/add-single-page-persistent');
@@ -87,7 +87,7 @@ function createPostingStreamChain({
     logError
   );
   var addHTMLFragmentStream = createStreamWithTransform(
-    addHTMLFragment,
+    AddHTMLFragment({ mediaDir }),
     logError
   );
   var updatePagesStream = createStreamWithTransform(
