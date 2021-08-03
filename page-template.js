@@ -10,7 +10,7 @@ function getHeader({
   indexOnlyExtraHTML = '',
   headExtraHTML = '',
   previewKeyCell,
-  previewURL
+  previewURL,
 }) {
   var titleHTML = title;
   if (homeLink) {
@@ -23,7 +23,7 @@ function getHeader({
       homeLink,
       previewKeyCell,
       title,
-      previewURL
+      previewURL,
     });
   }
 
@@ -45,17 +45,21 @@ function getHeader({
   ${headerExtraHTML}
   ${indexOnlyExtraHTML}
 
-  <section class="media">
-    <ul class="media-list">`.replace(titleRefRegex, titleHTML);
+  <main>
+
+    <section class="media">
+      <ul class="media-list">`.replace(titleRefRegex, titleHTML);
 }
 
 function getFooter({ previousIndexHTML, footerHTML }) {
-  return `</ul>
-  </section>
+  return `      </ul>
+    </section>
 
-  <div class="previous-indexes">${previousIndexHTML}</div>
+    <div class="previous-indexes">${previousIndexHTML}</div>
 
-  _FOOTER_REF
+    _FOOTER_REF
+
+  </main>
 
   </body>
   </html>`.replace(footerRegex, footerHTML);
@@ -65,11 +69,11 @@ function getPreviewTags({ homeLink, previewKeyCell, title, previewURL }) {
   var previewInfo = {
     url: previewURL || homeLink + '/' + previewKeyCell.id + '.html',
     title: sanitizeHtml(title, { allowedTags: [] }),
-    description: previewKeyCell.altText || previewKeyCell.caption || ''
+    description: previewKeyCell.altText || previewKeyCell.caption || '',
   };
 
   previewInfo.description = sanitizeHtml(previewInfo.description, {
-    allowedTags: []
+    allowedTags: [],
   });
 
   if (previewKeyCell.mediaFilename) {
@@ -101,5 +105,5 @@ function getPreviewTags({ homeLink, previewKeyCell, title, previewURL }) {
 
 module.exports = {
   getHeader: getHeader,
-  getFooter: getFooter
+  getFooter: getFooter,
 };
