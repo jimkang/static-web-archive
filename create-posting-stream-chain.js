@@ -23,6 +23,7 @@ function createPostingStreamChain({
   rootPath,
   generateRSS = true,
   rssFeedOpts = {},
+  rssPostingDelay = 0,
   archiveBaseURL = '/',
   skipDelays = true,
   modSingleEntryPageFragmentFn,
@@ -106,13 +107,12 @@ function createPostingStreamChain({
   var updateRSSPersistentStream;
 
   if (generateRSS) {
-    let rssDelay = 0;
     updateRSSPersistentStream = createStreamWithTransform(
       UpdateRSSPersistent({
         rssFeedOpts,
         archiveBaseURL,
         fileAbstraction: baseOpts.fileAbstraction,
-        delay: rssDelay,
+        delay: rssPostingDelay,
       }),
       logRSSUpdated
     );
