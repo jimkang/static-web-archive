@@ -1,7 +1,6 @@
 var sb = require('standard-bail')();
 var omit = require('lodash.omit');
 var queue = require('d3-queue').queue;
-var callNextTick = require('call-next-tick');
 
 function BufferToPersistence({
   mediaDir,
@@ -30,23 +29,25 @@ function BufferToPersistence({
         content: cell.buffer,
         message: 'static-web-archive posting media'
       };
+    }
 
-      var metadataGitPayload = {
-        filePath: metaDir + '/' + newCell.id + '.json',
-        content: JSON.stringify(newCell),
-        message: 'static-web-archive posting media metadata'
-      };
+    var metadataGitPayload = {
+      filePath: metaDir + '/' + newCell.id + '.json',
+      content: JSON.stringify(newCell),
+      message: 'static-web-archive posting media metadata'
+    };
 
-      // It's really important to make these updates serially so that one doesn't commit
-      // between the other's sha-get and commit, thereby changing the branch tip.
-      var q = queue(1);
+    // It's really important to make these updates serially so that one doesn't commit
+    // between the other's sha-get and commit, thereby changing the branch tip.
+    var q = queue(1);
+ 
+    if (cell.buffer) {
       q.defer(fileAbstractionForBuffers.update, bufferGitPayload);
       q.defer(wait);
-      q.defer(fileAbstractionForText.update, metadataGitPayload);
-      q.awaitAll(sb(passPackage, done));
-    } else {
-      callNextTick(passPackage);
     }
+
+    q.defer(fileAbstractionForText.update, metadataGitPayload);
+    q.awaitAll(sb(passPackage, done));
 
     function passPackage() {
       newCell.postedToPersistence = true;
