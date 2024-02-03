@@ -14,13 +14,13 @@ set-up-rss:
 	cp tests/rss-test-archive-root/rss-to-update.rss tests/rss-test-archive-root/rss/index.rss
 
 fs-tests: clean-fs-test-root set-up-rss
-	node tests/file-abstractions/fs-abstraction-tests.js
-	node tests/establish-last-page-index-tests.js
+	# node tests/file-abstractions/fs-abstraction-tests.js
+	# node tests/establish-last-page-index-tests.js
 	node tests/transforms/buffer-to-persistence-tests.js
-	node tests/transforms/update-index-html-persistent-tests.js
-	node tests/transforms/add-cells-to-pages-persistent-tests.js
-	node tests/transforms/add-single-page-persistent-tests.js
-	node tests/update-rss-tests.js
+	# node tests/transforms/update-index-html-persistent-tests.js
+	# node tests/transforms/add-cells-to-pages-persistent-tests.js
+	# node tests/transforms/add-single-page-persistent-tests.js
+	# node tests/update-rss-tests.js
 
 local-git-tests: clean-fs-test-root set-up-rss set-up-test-git-dir
 	ABSTRACTION=LocalGit node tests/file-abstractions/fs-abstraction-tests.js

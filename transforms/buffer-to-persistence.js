@@ -13,8 +13,10 @@ function BufferToPersistence({
 
   // Expected in a cell:
   // buffer
+  // buffers
   // id
   // mediaFilename
+  // mediaFilenames
   // date
   // optional: caption
   // optional: isVideo
@@ -23,13 +25,28 @@ function BufferToPersistence({
 
     var newCell = omit(cell, 'buffer');
 
-    if (cell.buffer) {
-      var bufferGitPayload = {
-        filePath: mediaDir + '/' + newCell.mediaFilename,
-        content: cell.buffer,
-        message: 'static-web-archive posting media'
-      };
+    var buffers = [];
+    var filenames = [];
+
+    if (cell.buffers) {
+      buffers = cell.buffers;
     }
+    if (cell.buffer) {
+      buffers.push(cell.buffer);
+    }
+
+    if (cell.mediaFilenames) {
+      filenames = cell.mediaFilenames;
+    }
+    if (cell.mediaFilename) {
+      filenames.push(cell.mediaFilename);
+    }
+
+    var bufferGitPayloads = buffers.map((buffer, i) => ({
+      filePath: mediaDir + '/' + filenames[i],
+      content: buffer,
+      message: 'static-web-archive posting media'
+    }));
 
     var metadataGitPayload = {
       filePath: metaDir + '/' + newCell.id + '.json',
@@ -41,8 +58,8 @@ function BufferToPersistence({
     // between the other's sha-get and commit, thereby changing the branch tip.
     var q = queue(1);
  
-    if (cell.buffer) {
-      q.defer(fileAbstractionForBuffers.update, bufferGitPayload);
+    if (buffers && buffers.length > 0) {
+      bufferGitPayloads.forEach(bufferGitPayload => q.defer(fileAbstractionForBuffers.update, bufferGitPayload));
       q.defer(wait);
     }
 

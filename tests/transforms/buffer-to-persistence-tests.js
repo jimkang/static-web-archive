@@ -9,6 +9,7 @@ var FSFile = require('../../file-abstractions/fs-file');
 var BufferToPersistence = require('../../transforms/buffer-to-persistence');
 
 const videoBasePath = __dirname + '/../fixtures/videos/';
+const imageBasePath = __dirname + '/../fixtures/images/';
 
 var cells = [
   {
@@ -41,8 +42,17 @@ var cells = [
     id: '12039472034',
     caption: 'No buffer at all.',
     date: 'Wed Apr 06 13:37:45 +0000 2017'
-  }
+  },
+  {
+    id: '849617052130213889',
+    caption: '',
+    date: 'Wed Apr 05 13:37:45 +0000 2017',
+    mediaFilenames: ['DPL17.mp4', 'wily-overhead.png'],
+    buffers: [fs.readFileSync(videoBasePath + 'DPL17ys0-inDTwQW.mp4'), fs.readFileSync(imageBasePath + 'wily-overhead.png')]
+  },
 ];
+
+// TODO: Check for files under file-abstractions dir.
 
 var bufferToPersistence;
 var fileAbstraction = FSFile({
