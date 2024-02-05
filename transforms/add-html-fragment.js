@@ -8,6 +8,7 @@ function AddHTMLFragment({ mediaDir = 'media' }) {
   // caption
   // optional: isVideo
   // optional: mediaFilename
+  // optional: mediaFiles
   function addHTMLFragment(cell, enc, done) {
     cell.htmlFragment = getHTMLFragmentFromCell({ mediaDir }, cell);
     this.push(cell);

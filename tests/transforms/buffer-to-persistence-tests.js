@@ -50,6 +50,13 @@ var cells = [
     mediaFilenames: ['DPL17.mp4', 'wily-overhead.png'],
     buffers: [fs.readFileSync(videoBasePath + 'DPL17ys0-inDTwQW.mp4'), fs.readFileSync(imageBasePath + 'wily-overhead.png')]
   },
+  {
+    id: '849617052130213890',
+    caption: 'Two media files',
+    date: 'Wed Apr 05 13:37:45 +0000 2017',
+    mediaFiles: [{ filename: 'coffee.mp4', mimeType: 'video/mp4' }, { filename: 'wily.png', mimeType: 'image/png'}],
+    buffers: [fs.readFileSync(videoBasePath + 'DPL17ys0-inDTwQW.mp4'), fs.readFileSync(imageBasePath + 'wily-overhead.png')]
+  },
 ];
 
 // TODO: Check for files under file-abstractions dir.

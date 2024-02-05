@@ -38,6 +38,9 @@ function BufferToPersistence({
     if (cell.mediaFilenames) {
       filenames = cell.mediaFilenames;
     }
+    if (cell.mediaFiles) {
+      filenames = cell.mediaFiles.map(mf => mf.filename);
+    }
     if (cell.mediaFilename) {
       filenames.push(cell.mediaFilename);
     }

@@ -26,7 +26,7 @@
     "through-stream-testbed": "^1.0.0"
   },
   "dependencies": {
-    "@jimkang/get-html-fragment-from-cell": "^2.3.3",
+    "@jimkang/get-html-fragment-from-cell": "^2.4.0",
     "async-waterfall": "^0.1.5",
     "await-to-js": "^2.1.1",
     "call-next-tick": "^2.0.1",
