@@ -16,7 +16,7 @@ var testCases = [
               "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:34:01.000Z'</div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/34U_5EzYg4Bvy88n.mp4'></video>\n  <div class='media-caption entry-meta'></div>\n</li>"
           },
           {
-            date: '22017-04-18T13:42:24.000Z',
+            date: '2018-04-18T13:42:24.000Z',
             htmlFragment:
               "<li class='pane'>\n  <div class='time-stamp entry-meta'><time datetime='2017-04-18T13:42:24.000Z'</div>\n  <video controls loop='true' preload='metadata' src='../testapp/videos/QBytlk6nvVUhhrT1.mp4'></video>\n  <div class='media-caption entry-meta'>Short protestor</div>\n</li>"
           }
