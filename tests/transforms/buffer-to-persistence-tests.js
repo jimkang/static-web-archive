@@ -94,4 +94,5 @@ function checkGitResult(t, cell) {
   t.ok(cell.id, 'There is a id.');
   t.equal(typeof cell.caption, 'string', 'There is a caption.');
   t.ok(cell.date, 'There is a date.');
+  t.ok(!cell.buffers, 'The output cell does not contain buffers.');
 }

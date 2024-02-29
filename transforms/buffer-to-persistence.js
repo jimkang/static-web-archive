@@ -23,7 +23,7 @@ function BufferToPersistence({
   function bufferToPersistence(cell, enc, done) {
     var stream = this;
 
-    var newCell = omit(cell, 'buffer');
+    var newCell = omit(cell, 'buffer', 'buffers');
 
     var buffers = [];
     var filenames = [];
