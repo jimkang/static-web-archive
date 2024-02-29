@@ -22,7 +22,7 @@
     "eslint": "^7.32.0",
     "longjohn": "^0.2.12",
     "sanitize-html": "^2.7.0",
-    "tape": "^5.5.2",
+    "tape": "^5.7.5",
     "through-stream-testbed": "^1.0.0"
   },
   "dependencies": {
